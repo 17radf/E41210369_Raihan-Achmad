@@ -7,6 +7,7 @@ package Home;
 import java.sql.*;
 import javax.swing.*;
 import Controller.Koneksi;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -26,6 +27,25 @@ public class Login_Form extends javax.swing.JFrame {
 	hide_pass.setVisible(false);
     }
 
+    public void login(){
+	   String sql = "select * from tb_user where username=? and password=?";
+	   
+	   try {
+	       pst= conn.prepareStatement(sql);
+	       pst.setString(1, txt_username.getText());
+	       pst.setString(2, String.valueOf(txt_password.getPassword()));
+	       rs=pst.executeQuery();
+	       if(rs.next()){
+		   JOptionPane.showMessageDialog(null,"Berhasil Login");
+		   this.setVisible(false);
+		   new Dashboard(rs.getString(1)).setVisible(true);
+	       }else
+		   JOptionPane.showMessageDialog(null,"Username dan Password Yang Anda Masukkan Salah");
+	   }catch (Exception e){
+	       JOptionPane.showMessageDialog(null, e);
+	   }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +75,11 @@ public class Login_Form extends javax.swing.JFrame {
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
                 jPanel1.setBackground(new java.awt.Color(30, 81, 40));
+                jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                jPanel1KeyPressed(evt);
+                        }
+                });
                 jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
                 txt_username.setBackground(new java.awt.Color(30, 81, 40));
@@ -72,6 +97,11 @@ public class Login_Form extends javax.swing.JFrame {
                                 txt_usernameActionPerformed(evt);
                         }
                 });
+                txt_username.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                txt_usernameKeyPressed(evt);
+                        }
+                });
                 jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 108, 217, 30));
 
                 txt_password.setBackground(new java.awt.Color(30, 81, 40));
@@ -82,6 +112,11 @@ public class Login_Form extends javax.swing.JFrame {
                 txt_password.addFocusListener(new java.awt.event.FocusAdapter() {
                         public void focusGained(java.awt.event.FocusEvent evt) {
                                 txt_passwordFocusGained(evt);
+                        }
+                });
+                txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                txt_passwordKeyPressed(evt);
                         }
                 });
                 jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 149, 217, 32));
@@ -107,6 +142,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel2.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
+                btn_login.setBackground(new java.awt.Color(30, 81, 40));
                 btn_login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 btn_login.setForeground(new java.awt.Color(255, 255, 255));
                 btn_login.setText("       Sign In");
@@ -132,6 +168,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel3.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
+                btn_register.setBackground(new java.awt.Color(30, 81, 40));
                 btn_register.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 btn_register.setForeground(new java.awt.Color(255, 255, 255));
                 btn_register.setText("       Sign Up");
@@ -216,7 +253,7 @@ public class Login_Form extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
          int dialogbtn = JOptionPane.YES_NO_OPTION;
-       int dialogresult = JOptionPane.showConfirmDialog(this, "you sure bud?", "Warning", dialogbtn);
+       int dialogresult = JOptionPane.showConfirmDialog(this, "Are you sure?", "Warning", dialogbtn);
        
        if (dialogresult == 0){
           System.exit(0);
@@ -273,6 +310,26 @@ public class Login_Form extends javax.swing.JFrame {
         private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
                 // TODO add your handling code here:
         }//GEN-LAST:event_txt_usernameActionPerformed
+
+        private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
+                // TODO add your handling code here:
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+			//perform action
+			login();
+		}
+        }//GEN-LAST:event_txt_passwordKeyPressed
+
+        private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jPanel1KeyPressed
+
+        private void txt_usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_usernameKeyPressed
+                // TODO add your handling code here:
+		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+			//perform action
+			login();
+		}
+        }//GEN-LAST:event_txt_usernameKeyPressed
 
     /**
      * @param args the command line arguments
