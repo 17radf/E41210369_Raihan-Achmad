@@ -134,8 +134,17 @@ public class Register_Form extends javax.swing.JFrame {
 
                 jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/padlock-2-20.png"))); // NOI18N
                 jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 30, 30));
+
+                jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+                jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
                 jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 190, 20));
+
+                jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+                jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
                 jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 190, 20));
+
+                jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
+                jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
                 jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 190, 10));
 
                 jPanel2.setBackground(new java.awt.Color(30, 81, 40));
@@ -168,7 +177,7 @@ public class Register_Form extends javax.swing.JFrame {
 
                 signin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 signin.setForeground(new java.awt.Color(255, 255, 255));
-                signin.setText("      Sign In");
+                signin.setText("       Back");
                 signin.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 signinMouseClicked(evt);
@@ -208,11 +217,13 @@ public class Register_Form extends javax.swing.JFrame {
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                 );
 
                 pack();
