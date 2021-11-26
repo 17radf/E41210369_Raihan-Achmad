@@ -60,7 +60,7 @@ public class Register_Form extends javax.swing.JFrame {
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-                jPanel1.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel1.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel1.setToolTipText("");
                 jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,7 +69,7 @@ public class Register_Form extends javax.swing.JFrame {
                 jLabel1.setText("REGISTER");
                 jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 150, 40));
 
-                txt_username.setBackground(new java.awt.Color(54, 33, 89));
+                txt_username.setBackground(new java.awt.Color(30, 81, 40));
                 txt_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 txt_username.setForeground(new java.awt.Color(255, 255, 255));
                 txt_username.setToolTipText("");
@@ -86,7 +86,7 @@ public class Register_Form extends javax.swing.JFrame {
                 });
                 jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 190, 30));
 
-                txt_email.setBackground(new java.awt.Color(54, 33, 89));
+                txt_email.setBackground(new java.awt.Color(30, 81, 40));
                 txt_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 txt_email.setForeground(new java.awt.Color(255, 255, 255));
                 txt_email.setToolTipText("");
@@ -106,7 +106,7 @@ public class Register_Form extends javax.swing.JFrame {
                 });
                 jPanel1.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 190, 30));
 
-                txt_password.setBackground(new java.awt.Color(54, 33, 89));
+                txt_password.setBackground(new java.awt.Color(30, 81, 40));
                 txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 txt_password.setForeground(new java.awt.Color(255, 255, 255));
                 txt_password.setToolTipText("");
@@ -138,7 +138,7 @@ public class Register_Form extends javax.swing.JFrame {
                 jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 190, 20));
                 jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 190, 10));
 
-                jPanel2.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel2.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
                 signup.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -163,7 +163,7 @@ public class Register_Form extends javax.swing.JFrame {
 
                 jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 90, 30));
 
-                jPanel4.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel4.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
                 signin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

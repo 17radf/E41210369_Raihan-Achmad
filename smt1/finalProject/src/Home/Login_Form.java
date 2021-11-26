@@ -54,10 +54,10 @@ public class Login_Form extends javax.swing.JFrame {
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-                jPanel1.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel1.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                txt_username.setBackground(new java.awt.Color(54, 33, 89));
+                txt_username.setBackground(new java.awt.Color(30, 81, 40));
                 txt_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 txt_username.setForeground(new java.awt.Color(255, 255, 255));
                 txt_username.setToolTipText("");
@@ -74,7 +74,7 @@ public class Login_Form extends javax.swing.JFrame {
                 });
                 jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 108, 217, 30));
 
-                txt_password.setBackground(new java.awt.Color(54, 33, 89));
+                txt_password.setBackground(new java.awt.Color(30, 81, 40));
                 txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 txt_password.setForeground(new java.awt.Color(255, 255, 255));
                 txt_password.setToolTipText("");
@@ -104,7 +104,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user-20.png"))); // NOI18N
                 jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 20, 30));
 
-                jPanel2.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel2.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
                 btn_login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -129,7 +129,7 @@ public class Login_Form extends javax.swing.JFrame {
 
                 jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, 30));
 
-                jPanel3.setBackground(new java.awt.Color(54, 33, 89));
+                jPanel3.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
                 btn_register.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -216,7 +216,7 @@ public class Login_Form extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
          int dialogbtn = JOptionPane.YES_NO_OPTION;
-       int dialogresult = JOptionPane.showConfirmDialog(this, "Are you sure?", "Warning", dialogbtn);
+       int dialogresult = JOptionPane.showConfirmDialog(this, "you sure bud?", "Warning", dialogbtn);
        
        if (dialogresult == 0){
           System.exit(0);
