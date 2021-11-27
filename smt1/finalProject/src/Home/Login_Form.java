@@ -140,7 +140,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel1.add(btn_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
                 jPanel2.setBackground(new java.awt.Color(30, 81, 40));
-                jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+                jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
 
                 btn_login.setBackground(new java.awt.Color(30, 81, 40));
                 btn_login.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
@@ -159,13 +159,11 @@ public class Login_Form extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btn_login)
-                                .addContainerGap(79, Short.MAX_VALUE))
+                                .addContainerGap(77, Short.MAX_VALUE))
                 );
                 jPanel2Layout.setVerticalGroup(
                         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btn_login, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 );
 
                 jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 220, 30));

@@ -148,7 +148,7 @@ public class Register_Form extends javax.swing.JFrame {
                 jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 190, 10));
 
                 jPanel2.setBackground(new java.awt.Color(30, 81, 40));
-                jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+                jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
 
                 signup.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 signup.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,17 +163,17 @@ public class Register_Form extends javax.swing.JFrame {
                 jPanel2.setLayout(jPanel2Layout);
                 jPanel2Layout.setHorizontalGroup(
                         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                        .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                 );
                 jPanel2Layout.setVerticalGroup(
                         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addComponent(signup, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 );
 
                 jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 90, 30));
 
                 jPanel4.setBackground(new java.awt.Color(30, 81, 40));
-                jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+                jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
 
                 signin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
                 signin.setForeground(new java.awt.Color(255, 255, 255));
