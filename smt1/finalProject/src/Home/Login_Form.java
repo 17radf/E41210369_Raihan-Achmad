@@ -58,7 +58,6 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel1 = new javax.swing.JPanel();
                 jLabel7 = new javax.swing.JLabel();
                 txt_username = new javax.swing.JTextField();
-                txt_password = new javax.swing.JPasswordField();
                 jSeparator1 = new javax.swing.JSeparator();
                 jSeparator2 = new javax.swing.JSeparator();
                 jLabel1 = new javax.swing.JLabel();
@@ -72,6 +71,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jLabel9 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
                 jLabel4 = new javax.swing.JLabel();
+                txt_password = new javax.swing.JPasswordField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +83,10 @@ public class Login_Form extends javax.swing.JFrame {
                 });
                 jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+                jLabel7.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
                 jLabel7.setForeground(new java.awt.Color(255, 255, 255));
                 jLabel7.setText("Login");
-                jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+                jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
                 txt_username.setBackground(new java.awt.Color(30, 81, 40));
                 txt_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -108,45 +108,28 @@ public class Login_Form extends javax.swing.JFrame {
                                 txt_usernameKeyPressed(evt);
                         }
                 });
-                jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 108, 217, 30));
-
-                txt_password.setBackground(new java.awt.Color(30, 81, 40));
-                txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                txt_password.setForeground(new java.awt.Color(255, 255, 255));
-                txt_password.setToolTipText("");
-                txt_password.setBorder(null);
-                txt_password.addFocusListener(new java.awt.event.FocusAdapter() {
-                        public void focusGained(java.awt.event.FocusEvent evt) {
-                                txt_passwordFocusGained(evt);
-                        }
-                });
-                txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyPressed(java.awt.event.KeyEvent evt) {
-                                txt_passwordKeyPressed(evt);
-                        }
-                });
-                jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 149, 217, 32));
+                jPanel1.add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 217, 30));
 
                 jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
                 jSeparator1.setAlignmentX(1.0F);
                 jSeparator1.setAlignmentY(1.0F);
                 jSeparator1.setAutoscrolls(true);
-                jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 220, 30));
+                jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 220, 30));
 
                 jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
                 jSeparator2.setAlignmentX(1.0F);
                 jSeparator2.setAlignmentY(1.0F);
                 jSeparator2.setAutoscrolls(true);
-                jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 220, 30));
+                jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 220, 30));
 
                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/padlock-2-20.png"))); // NOI18N
-                jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 20, 30));
+                jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 20, 30));
 
                 jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user-20.png"))); // NOI18N
-                jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 20, 30));
+                jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 20, 30));
 
                 btn_register.setBackground(new java.awt.Color(30, 81, 40));
-                btn_register.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+                btn_register.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
                 btn_register.setForeground(new java.awt.Color(255, 255, 255));
                 btn_register.setText("Sign Up?");
                 btn_register.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,13 +137,13 @@ public class Login_Form extends javax.swing.JFrame {
                                 btn_registerMouseClicked(evt);
                         }
                 });
-                jPanel1.add(btn_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+                jPanel1.add(btn_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
                 jPanel2.setBackground(new java.awt.Color(30, 81, 40));
                 jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
                 btn_login.setBackground(new java.awt.Color(30, 81, 40));
-                btn_login.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+                btn_login.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
                 btn_login.setForeground(new java.awt.Color(255, 255, 255));
                 btn_login.setText("Sign In");
                 btn_login.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,16 +159,16 @@ public class Login_Form extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btn_login)
-                                .addContainerGap(89, Short.MAX_VALUE))
+                                .addContainerGap(79, Short.MAX_VALUE))
                 );
                 jPanel2Layout.setVerticalGroup(
                         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                 );
 
-                jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 220, 30));
+                jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 220, 30));
 
                 view_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/visible-20.png"))); // NOI18N
                 view_pass.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,7 +176,7 @@ public class Login_Form extends javax.swing.JFrame {
                                 view_passMouseClicked(evt);
                         }
                 });
-                jPanel1.add(view_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, 30));
+                jPanel1.add(view_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, 30));
 
                 hide_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/invisible-20.png"))); // NOI18N
                 hide_pass.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,7 +184,7 @@ public class Login_Form extends javax.swing.JFrame {
                                 hide_passMouseClicked(evt);
                         }
                 });
-                jPanel1.add(hide_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, -1, 30));
+                jPanel1.add(hide_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, 30));
 
                 jPanel4.setBackground(new java.awt.Color(216, 233, 168));
 
@@ -250,6 +233,23 @@ public class Login_Form extends javax.swing.JFrame {
                 );
 
                 jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 460, 420));
+
+                txt_password.setBackground(new java.awt.Color(30, 81, 40));
+                txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+                txt_password.setForeground(new java.awt.Color(255, 255, 255));
+                txt_password.setToolTipText("");
+                txt_password.setBorder(null);
+                txt_password.addFocusListener(new java.awt.event.FocusAdapter() {
+                        public void focusGained(java.awt.event.FocusEvent evt) {
+                                txt_passwordFocusGained(evt);
+                        }
+                });
+                txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                txt_passwordKeyPressed(evt);
+                        }
+                });
+                jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 217, 32));
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
