@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -54,8 +56,6 @@ public final class Dashboard extends javax.swing.JFrame {
 	listId();
 	listBuah();
 	listPelanggan();
-	whoPelanggan();
-	howCost();
     }
 
     public void initThings(){
@@ -148,7 +148,9 @@ public final class Dashboard extends javax.swing.JFrame {
 			    if(rs.getString(1) == null){
 				    jLabel46.setText("Rp.0,00");
 			    }else{
-				    jLabel46.setText("Rp." + rs.getString(1) + ",00");
+				    Locale locale = new Locale("id", "ID");
+				    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+				    jLabel46.setText(currencyFormatter.format(Integer.parseInt(rs.getString(1))));
 			    }
 		    }
 	    }catch(SQLException e){
@@ -209,14 +211,12 @@ public final class Dashboard extends javax.swing.JFrame {
     }
 
     public void listId(){
-	jComboBox1.removeAllItems();
 	jComboBox3.removeAllItems();
 	    try{
 		    String sql = "select no_faktur from tb_transaksi";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
-			jComboBox1.addItem(rs.getString(1));
 			jComboBox3.addItem(rs.getString(1));
 		    }
 			sql = "select t.tanggal, p.nama from tb_transaksi as t join tb_pelanggan as p on t.id_pelanggan = p.id where t.no_faktur = " + jComboBox3.getSelectedItem();
@@ -232,14 +232,12 @@ public final class Dashboard extends javax.swing.JFrame {
     }
 
     public void listBuah(){
-	jComboBox2.removeAllItems();
 	jComboBox4.removeAllItems();
 	    try{
 		    String sql = "select nama from tb_buah";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
-			jComboBox2.addItem(rs.getString(1));
 			jComboBox4.addItem(rs.getString(1));
 		    }
 	    }catch(SQLException e){
@@ -259,47 +257,6 @@ public final class Dashboard extends javax.swing.JFrame {
 	    }
     }
 
-    public void updateHarga() throws SQLException{
-	System.out.println(hargaBuah);
-	try{
-		int um = Integer.parseInt(jTextField6.getText());
-		if( um > 0){
-			totalHarga = um * hargaBuah;
-			jTextField8.setText(Integer.toString(totalHarga));
-		}else{
-			System.out.println("salah value");
-		}
-	}catch(NumberFormatException ex){
-		jTextField8.setText("0");
-	}
-    }
-    public void whoPelanggan() throws SQLException {
-		String sql = "select p.nama from tb_pelanggan as p join tb_transaksi as t on p.id = t.id_pelanggan WHERE t.no_faktur = '" + jComboBox1.getSelectedItem() +"'";
-		try{
-			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
-			while(rs.next()){
-				jTextField9.setText(rs.getString(1));
-				jTextField9.setEditable(false);
-			}
-		}catch(SQLException ex){
-		}
-    }
-
-	public void howCost(){
-	String sql = "select harga from tb_buah where nama = '" + jComboBox2.getSelectedItem() + "'";
-	try{
-		pst=conn.prepareStatement(sql);
-		rs=pst.executeQuery();
-		while(rs.next()){
-			hargaBuah = rs.getInt("harga");
-			updateHarga();
-		}
-	}catch(SQLException ex){
-		System.out.println("netnot");
-	}
-
-}
 	public void clear(){
 		jTextField3.setText("");
 		jTextField4.setText("");
@@ -410,35 +367,21 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel25 = new javax.swing.JPanel();
                 jLabel50 = new javax.swing.JLabel();
                 jComboBox5 = new javax.swing.JComboBox<>();
-                datapenjualan = new javax.swing.JPanel();
+                dataPenjualan = new javax.swing.JPanel();
                 jLabel32 = new javax.swing.JLabel();
                 jScrollPane3 = new javax.swing.JScrollPane();
                 jTable3 = new javax.swing.JTable();
-                datapelanggan = new javax.swing.JPanel();
+                dataPelanggan = new javax.swing.JPanel();
                 jLabel27 = new javax.swing.JLabel();
                 jScrollPane2 = new javax.swing.JScrollPane();
                 jTable2 = new javax.swing.JTable();
-                datakaryawan = new javax.swing.JPanel();
+                dataKaryawan = new javax.swing.JPanel();
                 jLabel33 = new javax.swing.JLabel();
                 jScrollPane1 = new javax.swing.JScrollPane();
                 jTable1 = new javax.swing.JTable();
                 about = new javax.swing.JPanel();
                 jLabel36 = new javax.swing.JLabel();
                 jLabel30 = new javax.swing.JLabel();
-                transaksi = new javax.swing.JPanel();
-                jLabel14 = new javax.swing.JLabel();
-                jLabel16 = new javax.swing.JLabel();
-                jLabel17 = new javax.swing.JLabel();
-                jLabel19 = new javax.swing.JLabel();
-                jLabel20 = new javax.swing.JLabel();
-                jTextField6 = new javax.swing.JTextField();
-                jTextField8 = new javax.swing.JTextField();
-                jLabel22 = new javax.swing.JLabel();
-                jComboBox1 = new javax.swing.JComboBox<>();
-                jComboBox2 = new javax.swing.JComboBox<>();
-                button1 = new java.awt.Button();
-                button2 = new java.awt.Button();
-                jTextField9 = new javax.swing.JTextField();
                 jLabel24 = new javax.swing.JLabel();
                 jLabel29 = new javax.swing.JLabel();
 
@@ -1037,7 +980,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addComponent(jLabel58)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGap(15, 15, 15))
                 );
 
                 jTextField3.setBackground(new java.awt.Color(223, 232, 197));
@@ -1164,7 +1107,7 @@ public final class Dashboard extends javax.swing.JFrame {
                         jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel26Layout.createSequentialGroup()
                                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(25, 25, 25)
                                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel15)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1564,8 +1507,8 @@ public final class Dashboard extends javax.swing.JFrame {
 
                 jPanel6.add(buatTransaksi, "card5");
 
-                datapenjualan.setBackground(new java.awt.Color(216, 233, 168));
-                datapenjualan.setForeground(new java.awt.Color(255, 255, 255));
+                dataPenjualan.setBackground(new java.awt.Color(216, 233, 168));
+                dataPenjualan.setForeground(new java.awt.Color(255, 255, 255));
 
                 jLabel32.setBackground(new java.awt.Color(255, 255, 255));
                 jLabel32.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
@@ -1587,37 +1530,37 @@ public final class Dashboard extends javax.swing.JFrame {
                 ));
                 jScrollPane3.setViewportView(jTable3);
 
-                javax.swing.GroupLayout datapenjualanLayout = new javax.swing.GroupLayout(datapenjualan);
-                datapenjualan.setLayout(datapenjualanLayout);
-                datapenjualanLayout.setHorizontalGroup(
-                        datapenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datapenjualanLayout.createSequentialGroup()
+                javax.swing.GroupLayout dataPenjualanLayout = new javax.swing.GroupLayout(dataPenjualan);
+                dataPenjualan.setLayout(dataPenjualanLayout);
+                dataPenjualanLayout.setHorizontalGroup(
+                        dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataPenjualanLayout.createSequentialGroup()
                                 .addGap(308, 308, 308)
                                 .addComponent(jLabel32)
                                 .addContainerGap(370, Short.MAX_VALUE))
-                        .addGroup(datapenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(datapenjualanLayout.createSequentialGroup()
+                        .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataPenjualanLayout.createSequentialGroup()
                                         .addGap(38, 38, 38)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(98, Short.MAX_VALUE)))
                 );
-                datapenjualanLayout.setVerticalGroup(
-                        datapenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datapenjualanLayout.createSequentialGroup()
+                dataPenjualanLayout.setVerticalGroup(
+                        dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataPenjualanLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel32)
                                 .addContainerGap(507, Short.MAX_VALUE))
-                        .addGroup(datapenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(datapenjualanLayout.createSequentialGroup()
+                        .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataPenjualanLayout.createSequentialGroup()
                                         .addGap(74, 74, 74)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(113, Short.MAX_VALUE)))
                 );
 
-                jPanel6.add(datapenjualan, "card5");
+                jPanel6.add(dataPenjualan, "card5");
 
-                datapelanggan.setBackground(new java.awt.Color(216, 233, 168));
-                datapelanggan.setForeground(new java.awt.Color(255, 255, 255));
+                dataPelanggan.setBackground(new java.awt.Color(216, 233, 168));
+                dataPelanggan.setForeground(new java.awt.Color(255, 255, 255));
 
                 jLabel27.setBackground(new java.awt.Color(255, 255, 255));
                 jLabel27.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
@@ -1639,37 +1582,37 @@ public final class Dashboard extends javax.swing.JFrame {
                 ));
                 jScrollPane2.setViewportView(jTable2);
 
-                javax.swing.GroupLayout datapelangganLayout = new javax.swing.GroupLayout(datapelanggan);
-                datapelanggan.setLayout(datapelangganLayout);
-                datapelangganLayout.setHorizontalGroup(
-                        datapelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datapelangganLayout.createSequentialGroup()
+                javax.swing.GroupLayout dataPelangganLayout = new javax.swing.GroupLayout(dataPelanggan);
+                dataPelanggan.setLayout(dataPelangganLayout);
+                dataPelangganLayout.setHorizontalGroup(
+                        dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataPelangganLayout.createSequentialGroup()
                                 .addGap(301, 301, 301)
                                 .addComponent(jLabel27)
                                 .addContainerGap(370, Short.MAX_VALUE))
-                        .addGroup(datapelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(datapelangganLayout.createSequentialGroup()
+                        .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataPelangganLayout.createSequentialGroup()
                                         .addGap(38, 38, 38)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(99, Short.MAX_VALUE)))
                 );
-                datapelangganLayout.setVerticalGroup(
-                        datapelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datapelangganLayout.createSequentialGroup()
+                dataPelangganLayout.setVerticalGroup(
+                        dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataPelangganLayout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabel27)
                                 .addContainerGap(508, Short.MAX_VALUE))
-                        .addGroup(datapelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(datapelangganLayout.createSequentialGroup()
+                        .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataPelangganLayout.createSequentialGroup()
                                         .addGap(76, 76, 76)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(132, Short.MAX_VALUE)))
                 );
 
-                jPanel6.add(datapelanggan, "card5");
+                jPanel6.add(dataPelanggan, "card5");
 
-                datakaryawan.setBackground(new java.awt.Color(216, 233, 168));
-                datakaryawan.setForeground(new java.awt.Color(255, 255, 255));
+                dataKaryawan.setBackground(new java.awt.Color(216, 233, 168));
+                dataKaryawan.setForeground(new java.awt.Color(255, 255, 255));
 
                 jLabel33.setBackground(new java.awt.Color(255, 255, 255));
                 jLabel33.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
@@ -1691,23 +1634,23 @@ public final class Dashboard extends javax.swing.JFrame {
                 ));
                 jScrollPane1.setViewportView(jTable1);
 
-                javax.swing.GroupLayout datakaryawanLayout = new javax.swing.GroupLayout(datakaryawan);
-                datakaryawan.setLayout(datakaryawanLayout);
-                datakaryawanLayout.setHorizontalGroup(
-                        datakaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datakaryawanLayout.createSequentialGroup()
-                                .addGroup(datakaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(datakaryawanLayout.createSequentialGroup()
+                javax.swing.GroupLayout dataKaryawanLayout = new javax.swing.GroupLayout(dataKaryawan);
+                dataKaryawan.setLayout(dataKaryawanLayout);
+                dataKaryawanLayout.setHorizontalGroup(
+                        dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataKaryawanLayout.createSequentialGroup()
+                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(dataKaryawanLayout.createSequentialGroup()
                                                 .addGap(309, 309, 309)
                                                 .addComponent(jLabel33))
-                                        .addGroup(datakaryawanLayout.createSequentialGroup()
+                                        .addGroup(dataKaryawanLayout.createSequentialGroup()
                                                 .addGap(42, 42, 42)
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(29, Short.MAX_VALUE))
                 );
-                datakaryawanLayout.setVerticalGroup(
-                        datakaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(datakaryawanLayout.createSequentialGroup()
+                dataKaryawanLayout.setVerticalGroup(
+                        dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataKaryawanLayout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jLabel33)
                                 .addGap(32, 32, 32)
@@ -1715,7 +1658,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
-                jPanel6.add(datakaryawan, "card5");
+                jPanel6.add(dataKaryawan, "card5");
 
                 about.setBackground(new java.awt.Color(216, 233, 168));
                 about.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1732,154 +1675,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 about.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 650, 150));
 
                 jPanel6.add(about, "card7");
-
-                transaksi.setBackground(new java.awt.Color(216, 233, 168));
-                transaksi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-                jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-                jLabel14.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel14.setText("TRANSAKSI");
-                transaksi.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 90, -1));
-
-                jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                jLabel16.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel16.setText("Buah");
-                transaksi.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 100, 30));
-
-                jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                jLabel17.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel17.setText("Jumlah");
-                transaksi.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 90, 30));
-
-                jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                jLabel19.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel19.setText("Harga");
-                transaksi.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 90, 30));
-
-                jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                jLabel20.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel20.setText("Pelanggan");
-                transaksi.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 100, 30));
-
-                jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-                jTextField6.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jTextField6ActionPerformed(evt);
-                        }
-                });
-                jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
-                        public void keyTyped(java.awt.event.KeyEvent evt) {
-                                jTextField6KeyTyped(evt);
-                        }
-                        public void keyReleased(java.awt.event.KeyEvent evt) {
-                                jTextField6KeyReleased(evt);
-                        }
-                });
-                transaksi.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 140, 30));
-
-                jTextField8.setEditable(false);
-                jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-                jTextField8.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jTextField8ActionPerformed(evt);
-                        }
-                });
-                transaksi.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 140, 30));
-
-                jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-                jLabel22.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel22.setText("No Faktur");
-                transaksi.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 100, 30));
-
-                jComboBox1.setBackground(new java.awt.Color(216, 233, 168));
-                jComboBox1.setForeground(new java.awt.Color(25, 26, 25));
-                jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-                        public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                                jComboBox1PopupMenuWillBecomeVisible(evt);
-                        }
-                        public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                                jComboBox1PopupMenuWillBecomeInvisible(evt);
-                        }
-                        public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                        }
-                });
-                jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jComboBox1ActionPerformed(evt);
-                        }
-                });
-                transaksi.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 140, 30));
-
-                jComboBox2.setBackground(new java.awt.Color(216, 233, 168));
-                jComboBox2.setForeground(new java.awt.Color(25, 26, 25));
-                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                jComboBox2.addItemListener(new java.awt.event.ItemListener() {
-                        public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                                jComboBox2ItemStateChanged(evt);
-                        }
-                });
-                jComboBox2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-                        public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                        }
-                        public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                                jComboBox2PopupMenuWillBecomeInvisible(evt);
-                        }
-                        public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-                        }
-                });
-                jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jComboBox2ActionPerformed(evt);
-                        }
-                });
-                jComboBox2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                        public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                                jComboBox2PropertyChange(evt);
-                        }
-                });
-                transaksi.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 140, 30));
-
-                button1.setActionCommand("Transaksi Baru");
-                button1.setBackground(new java.awt.Color(216, 233, 168));
-                button1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                button1.setForeground(new java.awt.Color(25, 26, 25));
-                button1.setLabel("Kirim Transaksi");
-                button1.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                button1ActionPerformed(evt);
-                        }
-                });
-                transaksi.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 250, 40));
-                button1.getAccessibleContext().setAccessibleName("Transaksi Baru");
-
-                button2.setActionCommand("Buat Transaksi Baru");
-                button2.setBackground(new java.awt.Color(216, 233, 168));
-                button2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-                button2.setForeground(new java.awt.Color(25, 26, 25));
-                button2.setLabel("Buat Transaksi Baru");
-                button2.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                button2MouseClicked(evt);
-                        }
-                });
-                button2.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                button2ActionPerformed(evt);
-                        }
-                });
-                transaksi.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 250, 40));
-
-                jTextField9.setEditable(false);
-                jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-                jTextField9.addActionListener(new java.awt.event.ActionListener() {
-                        public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                jTextField9ActionPerformed(evt);
-                        }
-                });
-                transaksi.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 140, 30));
-
-                jPanel6.add(transaksi, "card3");
 
                 jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 790, 550));
 
@@ -1960,7 +1755,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	jPanel6.repaint();
 	jPanel6.revalidate();
 
-	jPanel6.add(datapenjualan);
+	jPanel6.add(dataPenjualan);
 	jPanel6.repaint();
 	jPanel6.revalidate();
 	tabelPenjualan();
@@ -1971,7 +1766,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	jPanel6.repaint();
 	jPanel6.revalidate();
 
-	jPanel6.add(datapelanggan);
+	jPanel6.add(dataPelanggan);
 	jPanel6.repaint();
 	jPanel6.revalidate();
 
@@ -1983,7 +1778,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	jPanel6.repaint();
 	jPanel6.revalidate();
 
-	jPanel6.add(datakaryawan);
+	jPanel6.add(dataKaryawan);
 	jPanel6.repaint();
 	jPanel6.revalidate();
 
@@ -2062,115 +1857,6 @@ public final class Dashboard extends javax.swing.JFrame {
 			jTextField2.setText(null);
 		}
         }//GEN-LAST:event_jTextField2KeyReleased
-
-        private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_jTextField9ActionPerformed
-
-        private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_jTextField8ActionPerformed
-
-        private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-
-        }//GEN-LAST:event_jTextField6KeyTyped
-
-        private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
-                // TODO add your handling code here:
-                String sql = "select harga from tb_buah where nama = '" + jComboBox2.getSelectedItem() + "'";
-                try{
-                        pst=conn.prepareStatement(sql);
-                        rs=pst.executeQuery();
-                        while(rs.next()){
-                                hargaBuah = rs.getInt("harga");
-                                updateHarga();
-                        }
-                }catch(SQLException ex){
-                        System.out.println("netnot");
-                }
-        }//GEN-LAST:event_jTextField6KeyReleased
-
-        private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_jTextField6ActionPerformed
-
-        private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
-                // TODO add your handling code here:
-        }//GEN-LAST:event_button2MouseClicked
-
-        private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-                jPanel6.removeAll();
-                jPanel6.repaint();
-                jPanel6.revalidate();
-
-                jPanel6.add(transaksi);
-                jPanel6.repaint();
-                jPanel6.revalidate();
-                String sql = "insert into tb_transaksi(tanggal) values(CURDATE())";
-                try{
-                        pst=conn.prepareStatement(sql);
-                        rs=pst.executeQuery();
-                        JOptionPane.showMessageDialog(null,"Transaksi baru telah dibuat");
-                }catch(SQLException ex){
-                        System.out.println("doesnt work lmao");
-                }
-        }//GEN-LAST:event_button2ActionPerformed
-
-        private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-                String idTransaksi = String.valueOf(jComboBox1.getSelectedItem());
-                String idBuah = String.valueOf(jComboBox2.getSelectedItem());
-                String ketiga = jTextField6.getText();
-                String idBuahSql = "select id from tb_buah where nama = '" + jComboBox2.getSelectedItem() + "'";
-                try{
-                        pst=conn.prepareStatement(idBuahSql);
-                        rs=pst.executeQuery();
-                        while(rs.next()){
-                                idBuah = rs.getString(1);
-                        }
-                        String Sql = "insert into tb_detail_transaksi (id_transaksi, id_buah, qty, id_user) values ('" + idTransaksi + "','" + idBuah + "','" + ketiga + "','" + id + "')";
-                        System.out.println(Sql);
-                        pst=conn.prepareStatement(Sql);
-                        rs=pst.executeQuery();
-                        JOptionPane.showMessageDialog(null,"Transaksi Terkirim");
-                }catch(SQLException ex){
-                        System.out.println("doesnt work lmao");
-                }
-        }//GEN-LAST:event_button1ActionPerformed
-
-        private void jComboBox2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox2PropertyChange
-
-        }//GEN-LAST:event_jComboBox2PropertyChange
-
-        private void jComboBox2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox2PopupMenuWillBecomeInvisible
-                // TODO add your handling code here:
-                howCost();
-        }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
-
-        private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-
-        }//GEN-LAST:event_jComboBox2ItemStateChanged
-
-        private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-                // TODO add your handling code here:
-        }//GEN-LAST:event_jComboBox2ActionPerformed
-
-        private void jComboBox1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeVisible
-                // TODO add your handling code here:
-                listId();
-        }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeVisible
-
-        private void jComboBox1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeInvisible
-                try {
-                        // TODO add your handling code here:
-                        whoPelanggan();
-                } catch (SQLException ex) {
-                        Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeInvisible
-
-        private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
-        }//GEN-LAST:event_jComboBox1ActionPerformed
 
         private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
                 // TODO add your handling code here:
@@ -2320,16 +2006,12 @@ public final class Dashboard extends javax.swing.JFrame {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JPanel about;
         private javax.swing.JPanel buatTransaksi;
-        private java.awt.Button button1;
-        private java.awt.Button button2;
         private javax.swing.JPanel cekStokBuah;
-        private javax.swing.JPanel datakaryawan;
-        private javax.swing.JPanel datapelanggan;
-        private javax.swing.JPanel datapenjualan;
+        private javax.swing.JPanel dataKaryawan;
+        private javax.swing.JPanel dataPelanggan;
+        private javax.swing.JPanel dataPenjualan;
         private javax.swing.JPanel home;
         private javax.swing.JButton jButton1;
-        private javax.swing.JComboBox<String> jComboBox1;
-        private javax.swing.JComboBox<String> jComboBox2;
         private javax.swing.JComboBox<String> jComboBox3;
         private javax.swing.JComboBox<String> jComboBox4;
         private javax.swing.JComboBox<String> jComboBox5;
@@ -2339,16 +2021,10 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel11;
         private javax.swing.JLabel jLabel12;
         private javax.swing.JLabel jLabel13;
-        private javax.swing.JLabel jLabel14;
         private javax.swing.JLabel jLabel15;
-        private javax.swing.JLabel jLabel16;
-        private javax.swing.JLabel jLabel17;
         private javax.swing.JLabel jLabel18;
-        private javax.swing.JLabel jLabel19;
         private javax.swing.JLabel jLabel2;
-        private javax.swing.JLabel jLabel20;
         private javax.swing.JLabel jLabel21;
-        private javax.swing.JLabel jLabel22;
         private javax.swing.JLabel jLabel23;
         private javax.swing.JLabel jLabel24;
         private javax.swing.JLabel jLabel25;
@@ -2438,10 +2114,6 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JTextField jTextField3;
         private javax.swing.JTextField jTextField4;
         private javax.swing.JTextField jTextField5;
-        private javax.swing.JTextField jTextField6;
         private javax.swing.JTextField jTextField7;
-        private javax.swing.JTextField jTextField8;
-        private javax.swing.JTextField jTextField9;
-        private javax.swing.JPanel transaksi;
         // End of variables declaration//GEN-END:variables
 }
