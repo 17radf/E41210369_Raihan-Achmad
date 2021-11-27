@@ -89,7 +89,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
                 txt_username.setBackground(new java.awt.Color(30, 81, 40));
-                txt_username.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+                txt_username.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
                 txt_username.setForeground(new java.awt.Color(255, 255, 255));
                 txt_username.setToolTipText("");
                 txt_username.setBorder(null);
@@ -235,7 +235,7 @@ public class Login_Form extends javax.swing.JFrame {
                 jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 460, 420));
 
                 txt_password.setBackground(new java.awt.Color(30, 81, 40));
-                txt_password.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+                txt_password.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
                 txt_password.setForeground(new java.awt.Color(255, 255, 255));
                 txt_password.setToolTipText("");
                 txt_password.setBorder(null);

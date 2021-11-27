@@ -60,6 +60,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
     public void initThings(){
 	    try{
+			jTextField7.disable();
 		    // transaksi hari ini
 	    String sql = "select count(*) from tb_transaksi where tanggal = curdate()";
 	    pst = conn.prepareStatement(sql);
@@ -191,7 +192,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
     public void tabelBuah(){
 	    DefaultTableModel model = new DefaultTableModel();
-	    model.addColumn("No");
+	    model.addColumn("ID");
 	    model.addColumn("Nama");
 	    model.addColumn("Stok");
 	    model.addColumn("Harga");
@@ -200,7 +201,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
-			    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+			    model.addRow(new Object[] {rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4)});
 		    }
 		    jTable4.setModel(model);
 	    }catch(SQLException e){
@@ -297,7 +298,15 @@ public final class Dashboard extends javax.swing.JFrame {
 	}catch(SQLException ex){
 		System.out.println("netnot");
 	}
+
 }
+	public void clear(){
+		jTextField3.setText("");
+		jTextField4.setText("");
+		jTextField5.setText("");
+		jTextField3.enable();
+		tabelBuah();
+	}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -347,13 +356,30 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel15 = new javax.swing.JPanel();
                 jLabel31 = new javax.swing.JLabel();
                 cekStokBuah = new javax.swing.JPanel();
-                jLabel15 = new javax.swing.JLabel();
                 jScrollPane4 = new javax.swing.JScrollPane();
                 jTable4 = new javax.swing.JTable();
                 jButton1 = new javax.swing.JButton();
                 jSeparator2 = new javax.swing.JSeparator();
                 jTextField1 = new javax.swing.JTextField();
                 jLabel38 = new javax.swing.JLabel();
+                jLabel51 = new javax.swing.JLabel();
+                jPanel26 = new javax.swing.JPanel();
+                jLabel15 = new javax.swing.JLabel();
+                jLabel52 = new javax.swing.JLabel();
+                jLabel53 = new javax.swing.JLabel();
+                jPanel27 = new javax.swing.JPanel();
+                jLabel54 = new javax.swing.JLabel();
+                jLabel58 = new javax.swing.JLabel();
+                jTextField3 = new javax.swing.JTextField();
+                jTextField4 = new javax.swing.JTextField();
+                jTextField5 = new javax.swing.JTextField();
+                jPanel28 = new javax.swing.JPanel();
+                jLabel55 = new javax.swing.JLabel();
+                jPanel29 = new javax.swing.JPanel();
+                jLabel56 = new javax.swing.JLabel();
+                jPanel30 = new javax.swing.JPanel();
+                jLabel57 = new javax.swing.JLabel();
+                jTextField7 = new javax.swing.JTextField();
                 buatTransaksi = new javax.swing.JPanel();
                 jPanel17 = new javax.swing.JPanel();
                 jLabel2 = new javax.swing.JLabel();
@@ -900,12 +926,8 @@ public final class Dashboard extends javax.swing.JFrame {
                 cekStokBuah.setBackground(new java.awt.Color(216, 233, 168));
                 cekStokBuah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-                jLabel15.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel15.setText("Stok Buah");
-                cekStokBuah.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 80, -1));
-
-                jTable4.setBackground(new java.awt.Color(216, 233, 168));
+                jTable4.setBackground(new java.awt.Color(223, 232, 197));
+                jTable4.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
                 jTable4.setForeground(new java.awt.Color(25, 26, 25));
                 jTable4.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
@@ -918,12 +940,18 @@ public final class Dashboard extends javax.swing.JFrame {
                                 "Title 1", "Title 2", "Title 3", "Title 4"
                         }
                 ));
+                jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jTable4MouseClicked(evt);
+                        }
+                });
                 jScrollPane4.setViewportView(jTable4);
 
-                cekStokBuah.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 640, 310));
+                cekStokBuah.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 360, 380));
 
-                jButton1.setBackground(new java.awt.Color(216, 233, 168));
-                jButton1.setForeground(new java.awt.Color(25, 26, 25));
+                jButton1.setBackground(new java.awt.Color(78, 159, 61));
+                jButton1.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
+                jButton1.setForeground(new java.awt.Color(255, 255, 255));
                 jButton1.setText("Cari");
                 jButton1.setToolTipText("");
                 jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -938,7 +966,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jSeparator2.setAlignmentX(1.0F);
                 jSeparator2.setAlignmentY(1.0F);
                 jSeparator2.setAutoscrolls(true);
-                cekStokBuah.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 480, 20));
+                cekStokBuah.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 210, 20));
 
                 jTextField1.setBackground(new java.awt.Color(216, 233, 168));
                 jTextField1.setBorder(null);
@@ -947,12 +975,231 @@ public final class Dashboard extends javax.swing.JFrame {
                                 jTextField1KeyPressed(evt);
                         }
                 });
-                cekStokBuah.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 480, 30));
+                cekStokBuah.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 210, 30));
 
                 jLabel38.setForeground(new java.awt.Color(216, 233, 168));
                 jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-30.png"))); // NOI18N
                 jLabel38.setText("jLabel38");
-                cekStokBuah.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 30, 30));
+                cekStokBuah.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 30, 30));
+
+                jLabel51.setBackground(new java.awt.Color(25, 26, 25));
+                jLabel51.setFont(new java.awt.Font("Cascadia Mono", 1, 24)); // NOI18N
+                jLabel51.setForeground(new java.awt.Color(25, 26, 25));
+                jLabel51.setText("Stok Buah");
+                cekStokBuah.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 260, 60));
+
+                jPanel26.setBackground(new java.awt.Color(223, 232, 197));
+
+                jLabel15.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
+                jLabel15.setForeground(new java.awt.Color(25, 26, 25));
+                jLabel15.setText("Nama Buah");
+
+                jLabel52.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
+                jLabel52.setForeground(new java.awt.Color(25, 26, 25));
+                jLabel52.setText("Stok");
+
+                jLabel53.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
+                jLabel53.setForeground(new java.awt.Color(25, 26, 25));
+                jLabel53.setText("Harga");
+
+                jPanel27.setBackground(new java.awt.Color(78, 159, 61));
+
+                jLabel54.setBackground(new java.awt.Color(25, 26, 25));
+                jLabel54.setFont(new java.awt.Font("Cascadia Mono", 1, 20)); // NOI18N
+                jLabel54.setForeground(new java.awt.Color(255, 255, 255));
+                jLabel54.setText("<html><center>Edit/Update Stok Buah-Buahan</center></html>");
+
+                jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-refresh-20.png"))); // NOI18N
+                jLabel58.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jLabel58MouseClicked(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+                jPanel27.setLayout(jPanel27Layout);
+                jPanel27Layout.setHorizontalGroup(
+                        jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addContainerGap(28, Short.MAX_VALUE)
+                                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                                                .addComponent(jLabel58)
+                                                .addContainerGap())
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                                                .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(23, 23, 23))))
+                );
+                jPanel27Layout.setVerticalGroup(
+                        jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel58)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(20, Short.MAX_VALUE))
+                );
+
+                jTextField3.setBackground(new java.awt.Color(223, 232, 197));
+                jTextField3.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField3ActionPerformed(evt);
+                        }
+                });
+
+                jTextField4.setBackground(new java.awt.Color(223, 232, 197));
+                jTextField4.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField4ActionPerformed(evt);
+                        }
+                });
+
+                jTextField5.setBackground(new java.awt.Color(223, 232, 197));
+                jTextField5.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField5ActionPerformed(evt);
+                        }
+                });
+
+                jPanel28.setBackground(new java.awt.Color(78, 159, 61));
+
+                jLabel55.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
+                jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+                jLabel55.setText("<html><center>Tambah</center></html>");
+                jLabel55.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jLabel55MouseClicked(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+                jPanel28.setLayout(jPanel28Layout);
+                jPanel28Layout.setHorizontalGroup(
+                        jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel28Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                jPanel28Layout.setVerticalGroup(
+                        jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                );
+
+                jPanel29.setBackground(new java.awt.Color(253, 253, 150));
+
+                jLabel56.setBackground(new java.awt.Color(25, 26, 25));
+                jLabel56.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
+                jLabel56.setForeground(new java.awt.Color(25, 26, 25));
+                jLabel56.setText("<html><center>Update</center></html>");
+                jLabel56.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jLabel56MouseClicked(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+                jPanel29.setLayout(jPanel29Layout);
+                jPanel29Layout.setHorizontalGroup(
+                        jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel29Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                jPanel29Layout.setVerticalGroup(
+                        jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                );
+
+                jPanel30.setBackground(new java.awt.Color(255, 105, 97));
+
+                jLabel57.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
+                jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+                jLabel57.setText("<html><center>Delete</center></html>");
+                jLabel57.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jLabel57MouseClicked(evt);
+                        }
+                });
+
+                javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
+                jPanel30.setLayout(jPanel30Layout);
+                jPanel30Layout.setHorizontalGroup(
+                        jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel30Layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                jPanel30Layout.setVerticalGroup(
+                        jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel57, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                );
+
+                javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+                jPanel26.setLayout(jPanel26Layout);
+                jPanel26Layout.setHorizontalGroup(
+                        jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel26Layout.createSequentialGroup()
+                                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel15)
+                                                        .addComponent(jLabel52)
+                                                        .addComponent(jLabel53))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                                        .addComponent(jTextField4)
+                                                        .addComponent(jTextField3))))
+                                .addGap(22, 22, 22))
+                );
+                jPanel26Layout.setVerticalGroup(
+                        jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel26Layout.createSequentialGroup()
+                                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel52)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel53)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15))
+                );
+
+                cekStokBuah.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 250, 380));
+
+                jTextField7.setBackground(new java.awt.Color(216, 233, 168));
+                jTextField7.setForeground(new java.awt.Color(216, 233, 168));
+                jTextField7.setBorder(null);
+                jTextField7.setCaretColor(new java.awt.Color(216, 233, 168));
+                jTextField7.setDisabledTextColor(new java.awt.Color(216, 233, 168));
+                jTextField7.setSelectedTextColor(new java.awt.Color(216, 233, 168));
+                jTextField7.setSelectionColor(new java.awt.Color(216, 233, 168));
+                jTextField7.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField7ActionPerformed(evt);
+                        }
+                });
+                cekStokBuah.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
                 jPanel6.add(cekStokBuah, "card2");
 
@@ -960,7 +1207,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 buatTransaksi.setForeground(new java.awt.Color(255, 255, 255));
 
                 jPanel17.setBackground(new java.awt.Color(223, 232, 197));
-                jPanel17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(78, 159, 61), 2, true));
 
                 jLabel2.setBackground(new java.awt.Color(25, 26, 25));
                 jLabel2.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
@@ -1043,7 +1289,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 );
 
                 jPanel18.setBackground(new java.awt.Color(223, 232, 197));
-                jPanel18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(78, 159, 61), 2, true));
 
                 jLabel43.setBackground(new java.awt.Color(25, 26, 25));
                 jLabel43.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
@@ -1135,8 +1380,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGap(12, 12, 12))
                 );
 
-                jTable5.setBackground(new java.awt.Color(216, 233, 168));
-                jTable5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(78, 159, 61), 2, true));
+                jTable5.setBackground(new java.awt.Color(223, 232, 197));
                 jTable5.setFont(new java.awt.Font("Cascadia Mono", 1, 12)); // NOI18N
                 jTable5.setForeground(new java.awt.Color(25, 26, 25));
                 jTable5.setModel(new javax.swing.table.DefaultTableModel(
@@ -1217,7 +1461,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 );
 
                 jPanel21.setBackground(new java.awt.Color(223, 232, 197));
-                jPanel21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(78, 159, 61), 2, true));
 
                 jLabel48.setBackground(new java.awt.Color(25, 26, 25));
                 jLabel48.setFont(new java.awt.Font("Cascadia Mono", 0, 14)); // NOI18N
@@ -1230,7 +1473,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel50.setBackground(new java.awt.Color(255, 255, 255));
                 jLabel50.setFont(new java.awt.Font("Cascadia Mono", 0, 16)); // NOI18N
                 jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel50.setText("        Tambah");
+                jLabel50.setText("         Buat");
                 jLabel50.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 jLabel50MouseClicked(evt);
@@ -1251,6 +1494,7 @@ public final class Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 );
 
+                jComboBox5.setBackground(new java.awt.Color(223, 232, 197));
                 jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
                 javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
@@ -1753,6 +1997,7 @@ public final class Dashboard extends javax.swing.JFrame {
         private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
                 // TODO add your handling code here:
 		    DefaultTableModel model = new DefaultTableModel();
+		    model.addColumn("ID");
 		    model.addColumn("Nama");
 		    model.addColumn("Stok");
 		    model.addColumn("Harga");
@@ -1761,7 +2006,7 @@ public final class Dashboard extends javax.swing.JFrame {
 			    pst=conn.prepareStatement(sql);
 			    rs=pst.executeQuery();
 			    while(rs.next()){
-				    model.addRow(new Object[] {rs.getString(2), rs.getString(3), rs.getString(4)});
+				    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
 			    }
 			    jTable4.setModel(model);
 		    }catch(SQLException e){
@@ -1961,6 +2206,101 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "";
         }//GEN-LAST:event_jLabel50MouseClicked
 
+        private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField4ActionPerformed
+
+        private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField5ActionPerformed
+
+        private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+                // TODO add your handling code here:
+		int row = jTable4.rowAtPoint(evt.getPoint());
+		String idBuah = jTable4.getValueAt(row,0).toString();
+		String nama = jTable4.getValueAt(row,1).toString();
+		String stok = jTable4.getValueAt(row,2).toString();
+		String harga = jTable4.getValueAt(row,3).toString();
+		if(jTable4.getValueAt(row, 0) == null){
+			jTextField7.setText("");
+		}else{
+			jTextField7.setText(idBuah);
+		}
+		if(jTable4.getValueAt(row, 1) == null){
+			jTextField3.setText("");
+		}else{
+			jTextField3.setText(nama);
+			jTextField3.disable();
+		}
+		if(jTable4.getValueAt(row, 2) == null){
+			jTextField4.setText("");
+		}else{
+			jTextField4.setText(stok);
+		}
+		if(jTable4.getValueAt(row, 3) == null){
+			jTextField5.setText("");
+		}else{
+			jTextField5.setText(harga);
+		}
+        }//GEN-LAST:event_jTable4MouseClicked
+
+        private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField3ActionPerformed
+
+        private void jLabel55MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel55MouseClicked
+                // TODO add your handling code here:
+		String sql = "insert into tb_buah values(null, '" + jTextField3.getText() + "','"+ jTextField4.getText() + "','" + jTextField5.getText() + "')";
+		System.out.println(sql);
+		try{
+		pst = conn.prepareStatement(sql);
+		rs = pst.executeQuery();
+           JOptionPane.showMessageDialog(null,"Data telah dimasukkan");
+		}catch(SQLException ex){
+           JOptionPane.showMessageDialog(null,"sike!!! gabisa");
+		}
+		tabelBuah();
+		
+        }//GEN-LAST:event_jLabel55MouseClicked
+
+        private void jLabel58MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel58MouseClicked
+                // TODO add your handling code here:
+		clear();
+        }//GEN-LAST:event_jLabel58MouseClicked
+
+        private void jLabel56MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel56MouseClicked
+                // TODO add your handling code here:
+		String sql = "update tb_buah set nama = '" + jTextField3.getText() + "', stok = '"+ jTextField4.getText() + "', harga = '" + jTextField5.getText() + "' where id = '" + jTextField7.getText() + "'";
+		System.out.println(sql);
+		try{
+		pst = conn.prepareStatement(sql);
+		rs = pst.executeQuery();
+           JOptionPane.showMessageDialog(null,"Data telah diupdate");
+		}catch(SQLException ex){
+           JOptionPane.showMessageDialog(null,"Gagal atau Masih ada data yang terrelasi");
+		}
+		tabelBuah();
+        }//GEN-LAST:event_jLabel56MouseClicked
+
+        private void jLabel57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel57MouseClicked
+                // TODO add your handling code here:
+		String sql = "delete from tb_buah where id = '" + jTextField7.getText() + "'";
+		System.out.println(sql);
+		try{
+		pst = conn.prepareStatement(sql);
+		rs = pst.executeQuery();
+           JOptionPane.showMessageDialog(null,"Data telah dihapus");
+		}catch(SQLException ex){
+           JOptionPane.showMessageDialog(null,"Gagal atau Masih ada data yang terrelasi");
+		}
+		tabelBuah();
+		tabelBuah();
+        }//GEN-LAST:event_jLabel57MouseClicked
+
+        private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1968,14 +2308,11 @@ public final class Dashboard extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         /* Create and display the form */
 	System.setProperty("awt.useSystemAAFontSettings", "on");
-        java.awt.EventQueue.invokeLater(new Runnable() {
-		@Override
-		public void run() {
-			try {
-				new Dashboard().setVisible(true);
-			} catch (SQLException | ClassNotFoundException ex) {
-				Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-			}
+        java.awt.EventQueue.invokeLater(() -> {
+		try {
+			new Dashboard().setVisible(true);
+		} catch (SQLException | ClassNotFoundException ex) {
+			Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	});
     }
@@ -2043,6 +2380,14 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel49;
         private javax.swing.JLabel jLabel5;
         private javax.swing.JLabel jLabel50;
+        private javax.swing.JLabel jLabel51;
+        private javax.swing.JLabel jLabel52;
+        private javax.swing.JLabel jLabel53;
+        private javax.swing.JLabel jLabel54;
+        private javax.swing.JLabel jLabel55;
+        private javax.swing.JLabel jLabel56;
+        private javax.swing.JLabel jLabel57;
+        private javax.swing.JLabel jLabel58;
         private javax.swing.JLabel jLabel6;
         private javax.swing.JLabel jLabel7;
         private javax.swing.JLabel jLabel8;
@@ -2065,7 +2410,12 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel23;
         private javax.swing.JPanel jPanel24;
         private javax.swing.JPanel jPanel25;
+        private javax.swing.JPanel jPanel26;
+        private javax.swing.JPanel jPanel27;
+        private javax.swing.JPanel jPanel28;
+        private javax.swing.JPanel jPanel29;
         private javax.swing.JPanel jPanel3;
+        private javax.swing.JPanel jPanel30;
         private javax.swing.JPanel jPanel4;
         private javax.swing.JPanel jPanel5;
         private javax.swing.JPanel jPanel6;
@@ -2085,7 +2435,11 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JTable jTable5;
         private javax.swing.JTextField jTextField1;
         private javax.swing.JTextField jTextField2;
+        private javax.swing.JTextField jTextField3;
+        private javax.swing.JTextField jTextField4;
+        private javax.swing.JTextField jTextField5;
         private javax.swing.JTextField jTextField6;
+        private javax.swing.JTextField jTextField7;
         private javax.swing.JTextField jTextField8;
         private javax.swing.JTextField jTextField9;
         private javax.swing.JPanel transaksi;
