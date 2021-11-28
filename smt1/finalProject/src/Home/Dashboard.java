@@ -7,7 +7,6 @@ package Home;
 
 import javax.swing.JOptionPane;
 import Controller.Koneksi;
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 
 /**
@@ -48,7 +46,6 @@ public final class Dashboard extends javax.swing.JFrame {
 	this.conn = Koneksi.getKoneksi();
 	this.id = id;
         initComponents();
-	initThings();
 	tabelKaryawan();
 	tabelPelanggan();
 	tabelPenjualan();
@@ -56,6 +53,8 @@ public final class Dashboard extends javax.swing.JFrame {
 	listId();
 	listBuah();
 	listPelanggan();
+	// some stuff that is a fuckin mess
+	initThings();
     }
 
     public void initThings(){
@@ -68,6 +67,8 @@ public final class Dashboard extends javax.swing.JFrame {
 			jTextField9.disable();
 
 			jTextField15.disable();
+
+			jTextField19.disable();
 		    // transaksi hari ini
 	    String sql = "select count(*) from tb_transaksi where tanggal = curdate()";
 	    pst = conn.prepareStatement(sql);
@@ -102,6 +103,12 @@ public final class Dashboard extends javax.swing.JFrame {
 	}else{
 	System.out.println("ur mom gay");
 }
+		sql = "select id from tb_bagianrole where nama = '" + jComboBox6.getSelectedItem() + "'";
+		pst = conn.prepareStatement(sql);
+		rs = pst.executeQuery();
+		while(rs.next()){
+			jLabel19.setText(rs.getString(1));
+		}
 	    }catch(SQLException ex){
 		    System.out.println("gagal gan");
 	    }
@@ -159,17 +166,25 @@ public final class Dashboard extends javax.swing.JFrame {
 
     public void tabelKaryawan(){
 	    DefaultTableModel model = new DefaultTableModel();
-	    model.addColumn("No");
+	    model.addColumn("ID");
 	    model.addColumn("Nama");
 	    model.addColumn("Bagian");
 	    try{
-		    String sql = "select k.id, k.nama, b.nama from tb_karyawan as k join tb_bagianrole as b on k.id = b.id";
+		    String sql = "select k.id, k.nama, b.nama from tb_karyawan as k join tb_bagianrole as b on k.id_bagian = b.id";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
 			    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3)});
 		    }
 		    jTable1.setModel(model);
+
+		    sql = "select nama from tb_bagianrole";
+		    jComboBox6.removeAllItems();
+		    pst=conn.prepareStatement(sql);
+		    rs=pst.executeQuery();
+		    while(rs.next()){
+			    jComboBox6.addItem(rs.getString(1));
+		    }
 	    }catch(SQLException e){
 	    }
     }
@@ -276,8 +291,13 @@ public final class Dashboard extends javax.swing.JFrame {
 		jTextField13.setText("");
 		jTextField12.setText("");
 
+		jTextField19.setText("");
+		jTextField18.setText("");
+		jComboBox6.setSelectedItem(this);
+
 		tabelPelanggan();
 		tabelBuah();
+		tabelKaryawan();
 	}
     /**
      * This method is called from within the constructor to initialize the form.
@@ -447,6 +467,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jComboBox6 = new javax.swing.JComboBox<>();
                 jPanel44 = new javax.swing.JPanel();
                 jLabel73 = new javax.swing.JLabel();
+                jLabel19 = new javax.swing.JLabel();
                 about = new javax.swing.JPanel();
                 jLabel36 = new javax.swing.JLabel();
                 jLabel30 = new javax.swing.JLabel();
@@ -2147,6 +2168,11 @@ public final class Dashboard extends javax.swing.JFrame {
                                 "Title 1", "Title 2", "Title 3", "Title 4"
                         }
                 ));
+                jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jTable1MouseClicked(evt);
+                        }
+                });
                 jScrollPane1.setViewportView(jTable1);
 
                 jPanel39.setBackground(new java.awt.Color(223, 232, 197));
@@ -2322,7 +2348,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel39Layout.setVerticalGroup(
                         jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel39Layout.createSequentialGroup()
-                                .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2344,27 +2370,33 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGap(15, 15, 15))
                 );
 
+                jLabel19.setForeground(new java.awt.Color(216, 233, 168));
+                jLabel19.setText("jLabel19");
+
                 javax.swing.GroupLayout dataKaryawanLayout = new javax.swing.GroupLayout(dataKaryawan);
                 dataKaryawan.setLayout(dataKaryawanLayout);
                 dataKaryawanLayout.setHorizontalGroup(
                         dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(dataKaryawanLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(dataKaryawanLayout.createSequentialGroup()
                                                 .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(30, 30, 30)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(46, 46, 46))
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(dataKaryawanLayout.createSequentialGroup()
                                                 .addComponent(jLabel32)
-                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel19)))
+                                .addGap(40, 40, 40))
                 );
                 dataKaryawanLayout.setVerticalGroup(
                         dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataKaryawanLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel19))
                                 .addGap(20, 20, 20)
                                 .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -2841,14 +2873,47 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void jLabel76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel76MouseClicked
                 // TODO add your handling code here:
+		String id = jTextField19.getText();
+		String nama = jTextField18.getText();
+		String bagian = jLabel19.getText();
+			
+		String sql = "update tb_karyawan set nama = '" + nama + "', id_bagian = '" + bagian + "' where id = " + id;
+		try{
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			JOptionPane.showMessageDialog(null,"Data berhasil diupdate");
+			tabelKaryawan();
+		}catch(SQLException ex){
+			JOptionPane.showMessageDialog(null,"Data gagal diupdate");
+		}
         }//GEN-LAST:event_jLabel76MouseClicked
 
         private void jLabel77MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel77MouseClicked
                 // TODO add your handling code here:
+		String id = jTextField19.getText();
+			
+		String sql = "delete from tb_karyawan where id = " + id;
+		try{
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			JOptionPane.showMessageDialog(null,"Data berhasil dihapus");
+			tabelKaryawan();
+		}catch(SQLException ex){
+			JOptionPane.showMessageDialog(null,"Data gagal dihapus");
+		}
         }//GEN-LAST:event_jLabel77MouseClicked
 
         private void jComboBox6PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox6PopupMenuWillBecomeInvisible
                 // TODO add your handling code here:
+		String sql = "select id from tb_bagianrole where nama = '" + jComboBox6.getSelectedItem() + "'";
+		try{
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				jLabel19.setText(rs.getString(1));
+			}
+		}catch(SQLException ex){
+		}
         }//GEN-LAST:event_jComboBox6PopupMenuWillBecomeInvisible
 
         private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseClicked
@@ -2859,13 +2924,17 @@ public final class Dashboard extends javax.swing.JFrame {
 		String alamat = jTextField12.getText();
 		String noHp = jTextField13.getText();
 		if(id.equals("")){
-			String sql = "insert into tb_pelanggan values(null, '" + nama + "','" + alamat + "','" + noHp + "')";
-			System.out.println(sql);
-			try{
-			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
-			tabelPelanggan();
-			}catch(SQLException ex){
+			if(!nama.equals("") && !alamat.equals("") && !noHp.equals("")){
+				String sql = "insert into tb_pelanggan values(null, '" + nama + "','" + alamat + "','" + noHp + "')";
+				System.out.println(sql);
+				try{
+				pst = conn.prepareStatement(sql);
+				rs = pst.executeQuery();
+				tabelPelanggan();
+				JOptionPane.showMessageDialog(null,"Data berhasil dimasukkan");
+				}catch(SQLException ex){
+					JOptionPane.showMessageDialog(null,"Data gagal dimasukkan");
+				}
 			}
 		}else{
 			JOptionPane.showMessageDialog(null,"Data gagal dimasukkan");
@@ -2874,6 +2943,25 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void jLabel73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel73MouseClicked
                 // TODO add your handling code here:
+		String id = jTextField19.getText();
+		String nama = jTextField18.getText();
+		String bagian = jLabel19.getText();
+
+		if(id.equals("")){
+			if(!nama.equals("")){
+				String sql = "insert into tb_karyawan values(null, '" + nama + "','" + bagian + "')";
+				System.out.println(sql);
+				try{
+				pst = conn.prepareStatement(sql);
+				rs = pst.executeQuery();
+				tabelKaryawan();
+				}catch(SQLException ex){
+					JOptionPane.showMessageDialog(null,"Data gagal dimasukkan");
+				}
+			}
+		}else{
+			JOptionPane.showMessageDialog(null,"Data gagal dimasukkan");
+		}
         }//GEN-LAST:event_jLabel73MouseClicked
 
         private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
@@ -2935,6 +3023,32 @@ public final class Dashboard extends javax.swing.JFrame {
 		    }
         }//GEN-LAST:event_jLabel17MouseClicked
 
+        private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+                // TODO add your handling code here:
+		int row = jTable1.rowAtPoint(evt.getPoint());
+		String idK = jTable1.getValueAt(row,0).toString();
+		String nama = jTable1.getValueAt(row,1).toString();
+		String bagian = jTable1.getValueAt(row,2).toString();
+
+
+		if(jTable1.getValueAt(row, 0) == null){
+			jTextField19.setText("");
+		}else{
+			jTextField19.setText(idK);
+			jTextField19.disable();
+		}
+		if(jTable1.getValueAt(row, 1) == null){
+			jTextField18.setText("");
+		}else{
+			jTextField18.setText(nama);
+		}
+		if(jTable1.getValueAt(row, 2) == null){
+			jComboBox6.setSelectedItem(this);
+		}else{
+			jComboBox6.setSelectedItem(bagian);
+		}
+        }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2974,6 +3088,7 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel16;
         private javax.swing.JLabel jLabel17;
         private javax.swing.JLabel jLabel18;
+        private javax.swing.JLabel jLabel19;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel20;
         private javax.swing.JLabel jLabel21;
