@@ -368,8 +368,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel30 = new javax.swing.JPanel();
                 jLabel57 = new javax.swing.JLabel();
                 jTextField7 = new javax.swing.JTextField();
-                jPanel46 = new javax.swing.JPanel();
-                jLabel17 = new javax.swing.JLabel();
                 buatTransaksi = new javax.swing.JPanel();
                 jPanel45 = new javax.swing.JPanel();
                 jLabel14 = new javax.swing.JLabel();
@@ -425,6 +423,9 @@ public final class Dashboard extends javax.swing.JFrame {
                 jComboBox1 = new javax.swing.JComboBox<>();
                 jLabel27 = new javax.swing.JLabel();
                 jLabel33 = new javax.swing.JLabel();
+                jLabel82 = new javax.swing.JLabel();
+                jSeparator4 = new javax.swing.JSeparator();
+                jTextField17 = new javax.swing.JTextField();
                 dataPelanggan = new javax.swing.JPanel();
                 jScrollPane2 = new javax.swing.JScrollPane();
                 jTable2 = new javax.swing.JTable();
@@ -447,6 +448,9 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel43 = new javax.swing.JPanel();
                 jLabel72 = new javax.swing.JLabel();
                 jLabel81 = new javax.swing.JLabel();
+                jLabel17 = new javax.swing.JLabel();
+                jTextField6 = new javax.swing.JTextField();
+                jSeparator1 = new javax.swing.JSeparator();
                 dataKaryawan = new javax.swing.JPanel();
                 jLabel32 = new javax.swing.JLabel();
                 jScrollPane1 = new javax.swing.JScrollPane();
@@ -468,6 +472,9 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel44 = new javax.swing.JPanel();
                 jLabel73 = new javax.swing.JLabel();
                 jLabel19 = new javax.swing.JLabel();
+                jLabel80 = new javax.swing.JLabel();
+                jSeparator3 = new javax.swing.JSeparator();
+                jTextField16 = new javax.swing.JTextField();
                 about = new javax.swing.JPanel();
                 jLabel36 = new javax.swing.JLabel();
                 jLabel30 = new javax.swing.JLabel();
@@ -969,16 +976,21 @@ public final class Dashboard extends javax.swing.JFrame {
                 jSeparator2.setAlignmentX(1.0F);
                 jSeparator2.setAlignmentY(1.0F);
                 jSeparator2.setAutoscrolls(true);
-                cekStokBuah.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 210, 20));
+                cekStokBuah.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 320, 20));
 
                 jTextField1.setBackground(new java.awt.Color(216, 233, 168));
                 jTextField1.setBorder(null);
+                jTextField1.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField1ActionPerformed(evt);
+                        }
+                });
                 jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
                         public void keyPressed(java.awt.event.KeyEvent evt) {
                                 jTextField1KeyPressed(evt);
                         }
                 });
-                cekStokBuah.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 210, 30));
+                cekStokBuah.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 320, 30));
 
                 jLabel38.setForeground(new java.awt.Color(216, 233, 168));
                 jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-30.png"))); // NOI18N
@@ -1204,35 +1216,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 });
                 cekStokBuah.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-                jPanel46.setBackground(new java.awt.Color(78, 159, 61));
-
-                jLabel17.setFont(new java.awt.Font("Cascadia Mono", 1, 14)); // NOI18N
-                jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel17.setText("Cari");
-                jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                jLabel17MouseClicked(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
-                jPanel46.setLayout(jPanel46Layout);
-                jPanel46Layout.setHorizontalGroup(
-                        jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel46Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel17)
-                                .addContainerGap(35, Short.MAX_VALUE))
-                );
-                jPanel46Layout.setVerticalGroup(
-                        jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel46Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                );
-
-                cekStokBuah.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 100, 30));
-
                 jPanel6.add(cekStokBuah, "card2");
 
                 buatTransaksi.setBackground(new java.awt.Color(216, 233, 168));
@@ -1322,7 +1305,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                                                 .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap(23, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 jPanel17Layout.setVerticalGroup(
                         jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1619,7 +1602,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(15, 15, 15)
                                                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(96, Short.MAX_VALUE))
+                                .addContainerGap(36, Short.MAX_VALUE))
                 );
 
                 jPanel6.add(buatTransaksi, "card5");
@@ -1852,23 +1835,38 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel33.setForeground(new java.awt.Color(25, 26, 25));
                 jLabel33.setText("Data Penjualan");
 
+                jLabel82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-30.png"))); // NOI18N
+
+                jTextField17.setBackground(new java.awt.Color(216, 233, 168));
+                jTextField17.setBorder(null);
+                jTextField17.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                jTextField17KeyPressed(evt);
+                        }
+                });
+
                 javax.swing.GroupLayout dataPenjualanLayout = new javax.swing.GroupLayout(dataPenjualan);
                 dataPenjualan.setLayout(dataPenjualanLayout);
                 dataPenjualanLayout.setHorizontalGroup(
                         dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(dataPenjualanLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(dataPenjualanLayout.createSequentialGroup()
+                                                .addComponent(jLabel33)
+                                                .addGap(73, 73, 73)
+                                                .addComponent(jLabel82)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jTextField17)
+                                                        .addComponent(jSeparator4)))
                                         .addGroup(dataPenjualanLayout.createSequentialGroup()
                                                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(30, 30, 30)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(40, 60, Short.MAX_VALUE))
-                                        .addGroup(dataPenjualanLayout.createSequentialGroup()
-                                                .addComponent(jLabel33)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel27)
-                                                .addGap(14, 14, 14))))
+                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                .addComponent(jLabel27)
+                                .addGap(104, 104, 104))
                 );
                 dataPenjualanLayout.setVerticalGroup(
                         dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1876,8 +1874,16 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel27))
-                                .addGap(20, 20, 20)
+                                        .addGroup(dataPenjualanLayout.createSequentialGroup()
+                                                .addComponent(jLabel27)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                                .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel82, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(dataPenjualanLayout.createSequentialGroup()
+                                                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(0, 0, 0)
+                                                                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(dataPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2118,26 +2124,58 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel81.setForeground(new java.awt.Color(25, 26, 25));
                 jLabel81.setText("Data Pelanggan");
 
+                jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-30.png"))); // NOI18N
+
+                jTextField6.setBackground(new java.awt.Color(216, 233, 168));
+                jTextField6.setBorder(null);
+                jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                jTextField6KeyPressed(evt);
+                        }
+                });
+
+                jSeparator1.setBackground(new java.awt.Color(25, 26, 25));
+                jSeparator1.setForeground(new java.awt.Color(25, 26, 25));
+
                 javax.swing.GroupLayout dataPelangganLayout = new javax.swing.GroupLayout(dataPelanggan);
                 dataPelanggan.setLayout(dataPelangganLayout);
                 dataPelangganLayout.setHorizontalGroup(
                         dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(dataPelangganLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
-                                .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel81)
+                                .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(dataPelangganLayout.createSequentialGroup()
-                                                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel17)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(dataPelangganLayout.createSequentialGroup()
+                                                .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel81))
                                                 .addGap(30, 30, 30)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(46, Short.MAX_VALUE))
+                                                .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(dataPelangganLayout.createSequentialGroup()
+                                                                .addGap(36, 36, 36)
+                                                                .addComponent(jTextField6))
+                                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(76, Short.MAX_VALUE))
                 );
                 dataPelangganLayout.setVerticalGroup(
                         dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPelangganLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
+                                .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(dataPelangganLayout.createSequentialGroup()
+                                                .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20))
+                                        .addGroup(dataPelangganLayout.createSequentialGroup()
+                                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGroup(dataPelangganLayout.createSequentialGroup()
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(dataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2373,6 +2411,21 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel19.setForeground(new java.awt.Color(216, 233, 168));
                 jLabel19.setText("jLabel19");
 
+                jLabel80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-search-30.png"))); // NOI18N
+
+                jTextField16.setBackground(new java.awt.Color(216, 233, 168));
+                jTextField16.setBorder(null);
+                jTextField16.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jTextField16ActionPerformed(evt);
+                        }
+                });
+                jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                jTextField16KeyPressed(evt);
+                        }
+                });
+
                 javax.swing.GroupLayout dataKaryawanLayout = new javax.swing.GroupLayout(dataKaryawan);
                 dataKaryawan.setLayout(dataKaryawanLayout);
                 dataKaryawanLayout.setHorizontalGroup(
@@ -2386,18 +2439,37 @@ public final class Dashboard extends javax.swing.JFrame {
                                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(dataKaryawanLayout.createSequentialGroup()
                                                 .addComponent(jLabel32)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel19)))
+                                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(dataKaryawanLayout.createSequentialGroup()
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(jLabel19))
+                                                        .addGroup(dataKaryawanLayout.createSequentialGroup()
+                                                                .addGap(93, 93, 93)
+                                                                .addComponent(jLabel80)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jSeparator3)
+                                                                        .addComponent(jTextField16))))))
                                 .addGap(40, 40, 40))
                 );
                 dataKaryawanLayout.setVerticalGroup(
                         dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataKaryawanLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel19))
-                                .addGap(20, 20, 20)
+                                .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(dataKaryawanLayout.createSequentialGroup()
+                                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataKaryawanLayout.createSequentialGroup()
+                                                .addComponent(jLabel19)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextField16)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(5, 5, 5))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataKaryawanLayout.createSequentialGroup()
+                                                .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                                 .addGroup(dataKaryawanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2542,6 +2614,21 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
                 // TODO add your handling code here:
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("ID");
+                model.addColumn("Nama");
+                model.addColumn("Stok");
+                model.addColumn("Harga");
+                try{
+                        String sql = "select * from tb_buah where nama like '%" + jTextField1.getText() + "%'";
+                        pst=conn.prepareStatement(sql);
+                        rs=pst.executeQuery();
+                        while(rs.next()){
+                                model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                        }
+                        jTable4.setModel(model);
+                }catch(SQLException e){
+                }
         }//GEN-LAST:event_jTextField1KeyPressed
 
         private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
@@ -3004,25 +3091,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 // TODO add your handling code here:
         }//GEN-LAST:event_jLabel14MouseClicked
 
-        private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
-                // TODO add your handling code here:
-		    DefaultTableModel model = new DefaultTableModel();
-		    model.addColumn("ID");
-		    model.addColumn("Nama");
-		    model.addColumn("Stok");
-		    model.addColumn("Harga");
-		    try{
-			    String sql = "select * from tb_buah where nama like '%" + jTextField1.getText() + "%'";
-			    pst=conn.prepareStatement(sql);
-			    rs=pst.executeQuery();
-			    while(rs.next()){
-				    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
-			    }
-			    jTable4.setModel(model);
-		    }catch(SQLException e){
-		    }
-        }//GEN-LAST:event_jLabel17MouseClicked
-
         private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
                 // TODO add your handling code here:
 		int row = jTable1.rowAtPoint(evt.getPoint());
@@ -3048,6 +3116,73 @@ public final class Dashboard extends javax.swing.JFrame {
 			jComboBox6.setSelectedItem(bagian);
 		}
         }//GEN-LAST:event_jTable1MouseClicked
+
+        private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField1ActionPerformed
+
+        private void jTextField6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyPressed
+                // TODO add your handling code here:
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("ID");
+                model.addColumn("Nama");
+                model.addColumn("Alamat");
+                model.addColumn("No HP");
+                try{
+                        String sql = "select * from tb_pelanggan where nama like '%" + jTextField6.getText() + "%'";
+                        pst=conn.prepareStatement(sql);
+                        rs=pst.executeQuery();
+                        while(rs.next()){
+                                model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                        }
+                        jTable2.setModel(model);
+                }catch(SQLException e){
+                }
+        }//GEN-LAST:event_jTextField6KeyPressed
+
+        private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+                // TODO add your handling code here:
+        }//GEN-LAST:event_jTextField16ActionPerformed
+
+        private void jTextField16KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyPressed
+                // TODO add your handling code here:
+		    DefaultTableModel model = new DefaultTableModel();
+		    model.addColumn("ID");
+		    model.addColumn("Nama");
+		    model.addColumn("Bagian");
+		    try{
+			    String sql = "select k.id, k.nama, b.nama from tb_karyawan as k join tb_bagianrole as b on k.id_bagian = b.id where k.nama like '%" + jTextField16.getText() + "%'";
+			    pst=conn.prepareStatement(sql);
+			    rs=pst.executeQuery();
+			    while(rs.next()){
+				    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3)});
+			    }
+			    jTable1.setModel(model);
+		    } catch (SQLException ex) {
+			Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+		}
+        }//GEN-LAST:event_jTextField16KeyPressed
+
+        private void jTextField17KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField17KeyPressed
+                // TODO add your handling code here:
+	    DefaultTableModel model = new DefaultTableModel();
+	    model.addColumn("ID");
+	    model.addColumn("Pelanggan");
+	    model.addColumn("Buah");
+	    model.addColumn("QTY");
+	    model.addColumn("Kasir");
+	    try{
+		    String sql = "select dt.id, p.nama, b.nama, dt.qty, u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where p.nama like '%" + jTextField17.getText() + "%' order by dt.id desc";
+		    System.out.println(sql);
+		    pst=conn.prepareStatement(sql);
+		    rs=pst.executeQuery();
+		    while(rs.next()){
+			    model.addRow(new Object[] {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+		    }
+		    jTable3.setModel(model);
+	    }catch(SQLException e){
+	    }
+        }//GEN-LAST:event_jTextField17KeyPressed
 
     /**
      * @param args the command line arguments
@@ -3156,7 +3291,9 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel78;
         private javax.swing.JLabel jLabel79;
         private javax.swing.JLabel jLabel8;
+        private javax.swing.JLabel jLabel80;
         private javax.swing.JLabel jLabel81;
+        private javax.swing.JLabel jLabel82;
         private javax.swing.JLabel jLabel9;
         private javax.swing.JPanel jPanel1;
         private javax.swing.JPanel jPanel10;
@@ -3198,7 +3335,6 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel43;
         private javax.swing.JPanel jPanel44;
         private javax.swing.JPanel jPanel45;
-        private javax.swing.JPanel jPanel46;
         private javax.swing.JPanel jPanel5;
         private javax.swing.JPanel jPanel6;
         private javax.swing.JPanel jPanel7;
@@ -3209,7 +3345,10 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JScrollPane jScrollPane3;
         private javax.swing.JScrollPane jScrollPane4;
         private javax.swing.JScrollPane jScrollPane5;
+        private javax.swing.JSeparator jSeparator1;
         private javax.swing.JSeparator jSeparator2;
+        private javax.swing.JSeparator jSeparator3;
+        private javax.swing.JSeparator jSeparator4;
         private javax.swing.JTable jTable1;
         private javax.swing.JTable jTable2;
         private javax.swing.JTable jTable3;
@@ -3222,12 +3361,15 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JTextField jTextField13;
         private javax.swing.JTextField jTextField14;
         private javax.swing.JTextField jTextField15;
+        private javax.swing.JTextField jTextField16;
+        private javax.swing.JTextField jTextField17;
         private javax.swing.JTextField jTextField18;
         private javax.swing.JTextField jTextField19;
         private javax.swing.JTextField jTextField2;
         private javax.swing.JTextField jTextField3;
         private javax.swing.JTextField jTextField4;
         private javax.swing.JTextField jTextField5;
+        private javax.swing.JTextField jTextField6;
         private javax.swing.JTextField jTextField7;
         private javax.swing.JTextField jTextField8;
         private javax.swing.JTextField jTextField9;
