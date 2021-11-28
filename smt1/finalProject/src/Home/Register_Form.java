@@ -126,14 +126,14 @@ public class Register_Form extends javax.swing.JFrame {
                 });
                 jPanel1.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 190, 30));
 
-                jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/email-20.png"))); // NOI18N
+                jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-email-20.png"))); // NOI18N
                 jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 30, 30));
 
-                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user-20.png"))); // NOI18N
+                jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-user-20.png"))); // NOI18N
                 jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 30, 30));
 
-                jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/padlock-2-20.png"))); // NOI18N
-                jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 30, 30));
+                jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-lock-20.png"))); // NOI18N
+                jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 30));
 
                 jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
                 jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,7 +197,7 @@ public class Register_Form extends javax.swing.JFrame {
 
                 jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, -1));
 
-                hide_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/invisible-20.png"))); // NOI18N
+                hide_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-uchiha-eyes-20.png"))); // NOI18N
                 hide_pass.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 hide_passMouseClicked(evt);
@@ -205,7 +205,7 @@ public class Register_Form extends javax.swing.JFrame {
                 });
                 jPanel1.add(hide_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 20, 20));
 
-                show_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/visible-20.png"))); // NOI18N
+                show_pass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-uchiha-eyes-20(1).png"))); // NOI18N
                 show_pass.addMouseListener(new java.awt.event.MouseAdapter() {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                                 show_passMouseClicked(evt);
