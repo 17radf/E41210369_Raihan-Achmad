@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Home;
+package View;
 import java.sql.*;
 import javax.swing.*;
 import Controller.Koneksi;
@@ -307,22 +307,7 @@ public class Login_Form extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void btn_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseClicked
-   String sql = "select * from tb_user where username=? and password=?";
-   
-   try {
-       pst= conn.prepareStatement(sql);
-       pst.setString(1, txt_username.getText());
-       pst.setString(2, String.valueOf(txt_password.getPassword()));
-       rs=pst.executeQuery();
-       if(rs.next()){
-           JOptionPane.showMessageDialog(null,"Berhasil Login");
-           this.setVisible(false);
-           new Dashboard(rs.getString(1)).setVisible(true);
-       }else
-           JOptionPane.showMessageDialog(null,"Username dan Password Yang Anda Masukkan Salah");
-   }catch (Exception e){
-       JOptionPane.showMessageDialog(null, e);
-   }
+	    login();
     }//GEN-LAST:event_btn_loginMouseClicked
 
     private void view_passMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_view_passMouseClicked

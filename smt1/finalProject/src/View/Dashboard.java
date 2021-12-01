@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Home;
+package View;
 
 import javax.swing.JOptionPane;
+
 import Controller.Koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,6 @@ public final class Dashboard extends javax.swing.JFrame {
 	PreparedStatement pst = null;
 	String id;
 	String idBuah;
-	String idPelanggan;
 	int hargaBuah;
 	int totalHarga;
 
@@ -59,18 +59,28 @@ public final class Dashboard extends javax.swing.JFrame {
 
     public void initThings(){
 	    try{
+		tabelKaryawan();
+		tabelPelanggan();
+		tabelBuah();
+		tabelPenjualan();
+		tabelDetailPenjualan((String) jComboBox3.getSelectedItem());
+		listId();
+		listId();
+		listBuah();
+		listPelanggan();
 		    // disable fields by default
 			jTextField7.disable();
 
 			jTextField11.disable();
 			jTextField10.disable();
 			jTextField9.disable();
+			jTextField8.disable();
 
 			jTextField15.disable();
 
 			jTextField19.disable();
 		    // transaksi hari ini
-	    String sql = "select count(*) from tb_transaksi where tanggal = curdate()";
+	    String sql = "select count(*) from tb_pembayaran where tgl_bayar = curdate()";
 	    pst = conn.prepareStatement(sql);
 	    rs = pst.executeQuery();
 	    while(rs.next()){
@@ -122,7 +132,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	    model.addColumn("QTY");
 	    model.addColumn("Kasir");
 	    try{
-		    String sql = "select dt.id, p.nama, b.nama, dt.qty, u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id order by dt.id desc";
+		    String sql = "select dt.id, p.nama, b.nama, dt.qty, u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.bayar = 'belum' order by dt.id desc";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
@@ -130,6 +140,8 @@ public final class Dashboard extends javax.swing.JFrame {
 		    }
 		    jTable3.setModel(model);
 	    }catch(SQLException e){
+		    model.addRow(new Object[] {});
+		    jTable3.setModel(model);
 	    }
     }
 
@@ -141,7 +153,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	    model.addColumn("Harga");
 	    model.addColumn("Kasir");
 	    try{
-		    String sql = "select dt.id, b.nama, dt.qty, sum(dt.qty * b.harga), u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = " + id + " group by dt.id order by t.tanggal desc";
+		    String sql = "select dt.id, b.nama, dt.qty, sum(dt.qty * b.harga), u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = " + jComboBox3.getSelectedItem() + " group by dt.id order by t.tanggal desc";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
@@ -228,13 +240,13 @@ public final class Dashboard extends javax.swing.JFrame {
     public void listId(){
 	jComboBox3.removeAllItems();
 	    try{
-		    String sql = "select no_faktur from tb_transaksi";
+		    String sql = "select no_faktur from tb_transaksi where bayar = 'belum'";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
 			jComboBox3.addItem(rs.getString(1));
 		    }
-			sql = "select t.tanggal, p.nama from tb_transaksi as t join tb_pelanggan as p on t.id_pelanggan = p.id where t.no_faktur = " + jComboBox3.getSelectedItem();
+			sql = "select t.tanggal, p.nama from tb_transaksi as t join tb_pelanggan as p on t.id_pelanggan = p.id where t.no_faktur = " + jComboBox3.getSelectedItem() + " and t.bayar = 'belum'";
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
 			while(rs.next()){
@@ -412,8 +424,6 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel62 = new javax.swing.JLabel();
                 jTextField8 = new javax.swing.JTextField();
                 jTextField9 = new javax.swing.JTextField();
-                jPanel34 = new javax.swing.JPanel();
-                jLabel64 = new javax.swing.JLabel();
                 jPanel35 = new javax.swing.JPanel();
                 jLabel65 = new javax.swing.JLabel();
                 jLabel20 = new javax.swing.JLabel();
@@ -597,7 +607,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
                 jLabel8.setFont(new java.awt.Font("Cascadia Mono", 0, 24)); // NOI18N
                 jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel8.setText("bruh");
+                jLabel8.setText("-");
 
                 jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-transaction-48.png"))); // NOI18N
 
@@ -650,7 +660,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
                 jLabel18.setFont(new java.awt.Font("Cascadia Mono", 0, 24)); // NOI18N
                 jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel18.setText("bruh");
+                jLabel18.setText("-");
 
                 jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-bill-48.png"))); // NOI18N
 
@@ -703,7 +713,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
                 jLabel34.setFont(new java.awt.Font("Cascadia Mono", 0, 24)); // NOI18N
                 jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-                jLabel34.setText("bruh");
+                jLabel34.setText("-");
 
                 jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-fruits-48.png"))); // NOI18N
 
@@ -1178,7 +1188,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel26Layout.setVerticalGroup(
                         jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel26Layout.createSequentialGroup()
-                                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel15)
@@ -1281,11 +1291,11 @@ public final class Dashboard extends javax.swing.JFrame {
                         }
                 });
 
-                jLabel9.setText("jLabel9");
+                jLabel9.setText("-");
 
-                jLabel11.setText("jLabel11");
+                jLabel11.setText("-");
 
-                jLabel47.setText("jLabel47");
+                jLabel47.setText("-");
 
                 javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
                 jPanel17.setLayout(jPanel17Layout);
@@ -1464,7 +1474,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel46.setBackground(new java.awt.Color(223, 232, 197));
                 jLabel46.setFont(new java.awt.Font("Cascadia Mono", 0, 18)); // NOI18N
                 jLabel46.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel46.setText("Rp. Harga Dirimu");
+                jLabel46.setText("Rp. -");
 
                 javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
                 jPanel16.setLayout(jPanel16Layout);
@@ -1486,6 +1496,11 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(78, 159, 61), 2, true));
 
                 jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/icons8-checkout-40.png"))); // NOI18N
+                jLabel49.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jLabel49MouseClicked(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
                 jPanel19.setLayout(jPanel19Layout);
@@ -1592,7 +1607,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGroup(buatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(buatTransaksiLayout.createSequentialGroup()
                                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(15, 15, 15)
                                                 .addGroup(buatTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1602,7 +1617,7 @@ public final class Dashboard extends javax.swing.JFrame {
                                                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(15, 15, 15)
                                                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(36, Short.MAX_VALUE))
+                                .addContainerGap(27, Short.MAX_VALUE))
                 );
 
                 jPanel6.add(buatTransaksi, "card5");
@@ -1696,32 +1711,6 @@ public final class Dashboard extends javax.swing.JFrame {
                         }
                 });
 
-                jPanel34.setBackground(new java.awt.Color(253, 253, 150));
-
-                jLabel64.setBackground(new java.awt.Color(25, 26, 25));
-                jLabel64.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
-                jLabel64.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel64.setText("<html><center>Update</center></html>");
-                jLabel64.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                jLabel64MouseClicked(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
-                jPanel34.setLayout(jPanel34Layout);
-                jPanel34Layout.setHorizontalGroup(
-                        jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel34Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
-                jPanel34Layout.setVerticalGroup(
-                        jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                );
-
                 jPanel35.setBackground(new java.awt.Color(255, 105, 97));
 
                 jLabel65.setFont(new java.awt.Font("Cascadia Mono", 1, 18)); // NOI18N
@@ -1779,7 +1768,6 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel31Layout.createSequentialGroup()
                                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel16)
@@ -1820,11 +1808,9 @@ public final class Dashboard extends javax.swing.JFrame {
                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel60)
                                         .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(38, 38, 38)
                                 .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))
+                                .addGap(37, 37, 37))
                 );
 
                 jLabel27.setForeground(new java.awt.Color(216, 233, 168));
@@ -2388,7 +2374,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel39Layout.setVerticalGroup(
                         jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel39Layout.createSequentialGroup()
-                                .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel40, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2651,7 +2637,7 @@ public final class Dashboard extends javax.swing.JFrame {
         private void jComboBox3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeInvisible
                 // TODO add your handling code here:
 		try{
-			String sql = "select t.tanggal, p.nama from tb_transaksi as t join tb_pelanggan as p on t.id_pelanggan = p.id where t.no_faktur = " + jComboBox3.getSelectedItem();
+			String sql = "select t.tanggal, p.nama from tb_transaksi as t join tb_pelanggan as p on t.id_pelanggan = p.id where t.no_faktur = " + jComboBox3.getSelectedItem() + " and t.bayar = 'belum' ";
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
 			while(rs.next()){
@@ -2677,19 +2663,38 @@ public final class Dashboard extends javax.swing.JFrame {
         private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
                 // TODO add your handling code here:
 		try{
-			int um = Integer.valueOf(jTextField2.getText());
-			System.out.println(um);
-			if( um > 0 ){
-				String sql = "select id from tb_buah where nama = '" + jComboBox4.getSelectedItem() + "'";
-				pst = conn.prepareStatement(sql);
-				rs = pst.executeQuery();
-				while(rs.next()){
-					idBuah = rs.getString(1);
+			String sql = "select (stok - " + jTextField2.getText() + ") from tb_buah where nama = '" + jComboBox4.getSelectedItem() + "'";
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				if(Integer.parseInt(rs.getString(1)) >= 0){
+					int um = Integer.valueOf(jTextField2.getText());
+					System.out.println(um);
+					if( um > 0 ){
+					sql = "select id from tb_buah where nama = '" + jComboBox4.getSelectedItem() + "'";
+					pst = conn.prepareStatement(sql);
+					rs = pst.executeQuery();
+					while(rs.next()){
+						idBuah = rs.getString(1);
+					}
+					sql = "insert into tb_detail_transaksi values(null, '" + jComboBox3.getSelectedItem() + "','" + idBuah + "','" + jTextField2.getText() + "','" + id + "')";
+					pst = conn.prepareStatement(sql);
+					rs = pst.executeQuery();
+					sql = "update tb_buah set stok = (stok - " + jTextField2.getText() + ") where id = " + idBuah;
+					pst = conn.prepareStatement(sql);
+					rs = pst.executeQuery();
+					tabelDetailPenjualan((String) jComboBox3.getSelectedItem());
+				} else {
 				}
-				sql = "insert into tb_detail_transaksi values(null, '" + jComboBox3.getSelectedItem() + "','" + idBuah + "','" + jTextField2.getText() + "','" + id + "')";
-				pst = conn.prepareStatement(sql);
-				rs = pst.executeQuery();
-				tabelDetailPenjualan((String) jComboBox3.getSelectedItem());
+			}else{
+					sql = "select stok from tb_buah where nama = '" + jComboBox4.getSelectedItem() + "'"; 
+					pst = conn.prepareStatement(sql);
+					rs = pst.executeQuery();
+					while(rs.next()){
+						JOptionPane.showMessageDialog(null,"Stok Buah untuk " + jComboBox4.getSelectedItem() + " tidak mencukupi");
+						JOptionPane.showMessageDialog(null,"Sisa stok untuk " + jComboBox4.getSelectedItem() + " adalah " + rs.getString(1));
+					}
+				}
 			}
 		}catch(SQLException ex){
 			System.out.println("gabisa gan");
@@ -2705,7 +2710,21 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void jLabel50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseClicked
 		// TODO add your handling code here:
-		String sql = "";
+		try{
+		String sql = "select id from tb_pelanggan where nama = '" + jComboBox5.getSelectedItem() + "'";
+		pst = conn.prepareStatement(sql);
+		rs = pst.executeQuery();
+		System.out.println(sql);
+		while(rs.next()){
+			sql = "insert into tb_transaksi values(null, " + rs.getString(1) + ", CURDATE(), default)";
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			System.out.println(sql);
+			JOptionPane.showMessageDialog(null,"Pembayaran baru atas nama " + jComboBox5.getSelectedItem() + " telah dibuat");
+			initThings();
+		}
+		}catch(SQLException ex){
+		}
         }//GEN-LAST:event_jLabel50MouseClicked
 
         private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -2815,26 +2834,16 @@ public final class Dashboard extends javax.swing.JFrame {
                 // TODO add your handling code here:
         }//GEN-LAST:event_jTextField9ActionPerformed
 
-        private void jLabel64MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel64MouseClicked
-                // TODO add your handling code here:
-		String sql = "update tb_detail_transaksi set id_buah = " + jLabel27.getText() + ", qty = '" + jTextField8.getText() + "' where id = " + jTextField11.getText();
-		System.out.println(sql);
-		try{
-			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
-			   JOptionPane.showMessageDialog(null,"Data telah diupdate");
-			   tabelPenjualan();
-		}catch(SQLException ex){
-			   JOptionPane.showMessageDialog(null,"Data gagal diupdate");
-		}
-        }//GEN-LAST:event_jLabel64MouseClicked
-
         private void jLabel65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel65MouseClicked
                 // TODO add your handling code here:
 		String sql = "delete from tb_detail_transaksi where id = '" + jTextField11.getText() + "'";
 		try{
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
+			sql = "update tb_buah set stok = (stok + " + jTextField8.getText() + ") where id = " + jLabel27.getText();
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			System.out.println(sql);
 			   JOptionPane.showMessageDialog(null,"Data telah dihapus");
 			   tabelPenjualan();
 		}catch(SQLException ex){
@@ -3174,7 +3183,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	    model.addColumn("QTY");
 	    model.addColumn("Kasir");
 	    try{
-		    String sql = "select dt.id, p.nama, b.nama, dt.qty, u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where p.nama like '%" + jTextField17.getText() + "%' order by dt.id desc";
+		    String sql = "select dt.id, p.nama, b.nama, dt.qty, u.nama from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where p.nama like '%" + jTextField17.getText() + "%' and t.bayar = 'belum' order by dt.id desc";
 		    System.out.println(sql);
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
@@ -3185,6 +3194,42 @@ public final class Dashboard extends javax.swing.JFrame {
 	    }catch(SQLException e){
 	    }
         }//GEN-LAST:event_jTextField17KeyPressed
+
+        private void jLabel49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel49MouseClicked
+		try {
+			int bayar = Integer.parseInt(
+				JOptionPane.showInputDialog(this, "Input Harga:"));
+			System.out.println(bayar);
+			// TODO add your handling code here:
+			String sql = "select sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = " + jComboBox3.getSelectedItem();
+			pst=conn.prepareStatement(sql);
+			rs=pst.executeQuery();
+			while(rs.next()){
+				int total = Integer.parseInt(rs.getString(1)) - bayar;
+				int hargaTot = Integer.parseInt(rs.getString(1));
+				if(total <= 0){
+
+					sql = "update tb_transaksi set bayar = 'sudah' where no_faktur = " + jComboBox3.getSelectedItem();
+					pst=conn.prepareStatement(sql);
+					rs=pst.executeQuery();
+					String idTran = (String) jComboBox3.getSelectedItem();
+
+					// insert ke pembayaran
+					sql = "insert into tb_pembayaran values (null, " + idTran + ", " + hargaTot + ", CURDATE())";
+					pst=conn.prepareStatement(sql);
+					rs=pst.executeQuery();
+
+					System.out.println("idtran = " +idTran+ " idkasir = " +id+ " bayar = " +bayar);
+					new Struk(idTran, id, bayar).setVisible(true);
+					initThings();
+				}else{
+					JOptionPane.showMessageDialog(null,"Nominal tidak mencukupi");
+				}
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+		}
+        }//GEN-LAST:event_jLabel49MouseClicked
 
     /**
      * @param args the command line arguments
@@ -3275,7 +3320,6 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel61;
         private javax.swing.JLabel jLabel62;
         private javax.swing.JLabel jLabel63;
-        private javax.swing.JLabel jLabel64;
         private javax.swing.JLabel jLabel65;
         private javax.swing.JLabel jLabel66;
         private javax.swing.JLabel jLabel67;
@@ -3324,7 +3368,6 @@ public final class Dashboard extends javax.swing.JFrame {
         private javax.swing.JPanel jPanel31;
         private javax.swing.JPanel jPanel32;
         private javax.swing.JPanel jPanel33;
-        private javax.swing.JPanel jPanel34;
         private javax.swing.JPanel jPanel35;
         private javax.swing.JPanel jPanel36;
         private javax.swing.JPanel jPanel37;
