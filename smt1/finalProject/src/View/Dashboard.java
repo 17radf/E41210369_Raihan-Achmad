@@ -262,7 +262,7 @@ public final class Dashboard extends javax.swing.JFrame {
 	jComboBox1.removeAllItems();
 	jComboBox4.removeAllItems();
 	    try{
-		    String sql = "select nama from tb_buah";
+		    String sql = "select nama from tb_buah order by nama asc";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
@@ -1188,7 +1188,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel26Layout.setVerticalGroup(
                         jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel26Layout.createSequentialGroup()
-                                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel15)
@@ -2472,13 +2472,13 @@ public final class Dashboard extends javax.swing.JFrame {
                 jLabel36.setBackground(new java.awt.Color(255, 255, 255));
                 jLabel36.setFont(new java.awt.Font("Cascadia Mono", 0, 24)); // NOI18N
                 jLabel36.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel36.setText("About Us");
-                about.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 120, 40));
+                jLabel36.setText("- About Us -");
+                about.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 40));
 
                 jLabel30.setFont(new java.awt.Font("Cascadia Mono", 0, 18)); // NOI18N
                 jLabel30.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel30.setText("<html>Kami kelompok 1 dari golongan A, yaudah gitu aja mau ngomong apa lagi? aku gatau mau nulis apa jadi ya gitu deh jadinya oh iya kalo mau kasih word wrap di label tinggal ngasih tag html aja trus teksnya dimasukin ke dalem tag itu. ok tq</html>");
-                about.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 650, 150));
+                jLabel30.setText("<html><center>Kami kelompok 1 dari golongan A, aplikasi toko buah ini dibuat untuk memenuhi tugas workshop pemrograman perangkat lunak. yaudah gitu aja mau ngomong apa lagi? aku gatau mau nulis apa jadi ya gitu deh jadinya oh iya kalo mau kasih word wrap di label tinggal ngasih tag html aja trus teksnya dimasukin ke dalem tag itu. ok tq</center></html>");
+                about.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 650, 150));
 
                 jPanel6.add(about, "card7");
 
@@ -3197,9 +3197,20 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void jLabel49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel49MouseClicked
 		try {
-			int bayar = Integer.parseInt(
+			int bayar;
+			try{
+				bayar = Integer.parseInt(
 				JOptionPane.showInputDialog(this, "Input Harga:"));
+
+				if(bayar > 20000000){
+					JOptionPane.showMessageDialog(null,"Batas pembayaran telah mencapai limit");
+					bayar = 0;
+				}
 			System.out.println(bayar);
+			}catch(NumberFormatException ex){
+				bayar = 0;
+				JOptionPane.showMessageDialog(null,"Tolong input nominal dengan benar");
+			}
 			// TODO add your handling code here:
 			String sql = "select sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = " + jComboBox3.getSelectedItem();
 			pst=conn.prepareStatement(sql);

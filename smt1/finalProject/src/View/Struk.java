@@ -68,7 +68,7 @@ public final class Struk extends javax.swing.JFrame {
 			jTextArea1.setText(jTextArea1.getText() + "\t\t\t\t\t\t\tKasir : " + rs.getString(1));
 		}
 			jTextArea1.setText(jTextArea1.getText() + "\n\n");
-			jTextArea1.setText(jTextArea1.getText() + "---------------------------------------------------------------------------------\n");
+			jTextArea1.setText(jTextArea1.getText() + "-----------------------------------------------------------------------------------\n");
 			jTextArea1.setText(jTextArea1.getText() + "ID Item\t\t");
 			jTextArea1.setText(jTextArea1.getText() + "Nama\t\t");
 			jTextArea1.setText(jTextArea1.getText() + "Jumlah\t\t\t");
@@ -93,7 +93,7 @@ public final class Struk extends javax.swing.JFrame {
 		pst = conn.prepareStatement(sql);
 		rs = pst.executeQuery();
 		jTextArea1.setText(jTextArea1.getText() + "\n");
-		jTextArea1.setText(jTextArea1.getText() + "---------------------------------------------------------------------------------");
+		jTextArea1.setText(jTextArea1.getText() + "-----------------------------------------------------------------------------------");
 		while(rs.next()){
 			jTextArea1.setText(jTextArea1.getText() + "\n");
 			jTextArea1.setText(jTextArea1.getText() + "\n");
@@ -153,24 +153,23 @@ public final class Struk extends javax.swing.JFrame {
                 jLabel1.setBackground(new java.awt.Color(25, 26, 25));
                 jLabel1.setFont(new java.awt.Font("Cascadia Mono", 1, 24)); // NOI18N
                 jLabel1.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel1.setText("Struk Towkoh Vuahh");
+                jLabel1.setText("Struk Toko Buah");
 
                 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
                 jPanel1.setLayout(jPanel1Layout);
                 jPanel1Layout.setHorizontalGroup(
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(227, 227, 227))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(181, 181, 181)
-                                                .addComponent(jLabel1))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(26, Short.MAX_VALUE))
                 );
                 jPanel1Layout.setVerticalGroup(
                         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,8 +178,8 @@ public final class Struk extends javax.swing.JFrame {
                                 .addGap(68, 68, 68)
                                 .addComponent(jLabel1)
                                 .addGap(40, 40, 40)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(47, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(25, Short.MAX_VALUE))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,9 +190,7 @@ public final class Struk extends javax.swing.JFrame {
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 );
 
                 pack();
