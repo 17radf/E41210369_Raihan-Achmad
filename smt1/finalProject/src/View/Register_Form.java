@@ -305,12 +305,12 @@ public class Register_Form extends javax.swing.JFrame {
           
 	System.out.println(sql);
 	pst=conn.prepareStatement(sql);
-	rs=pst.executeQuery();
+	pst.executeUpdate();
 	JOptionPane.showMessageDialog(null,"Penyimpanan Data Berhasil");
 	this.setVisible(false);
 	new Login_Form().setVisible(true);
       }catch(HeadlessException | ClassNotFoundException | SQLException e){
-          JOptionPane.showMessageDialog(null, "ada yg error");
+          JOptionPane.showMessageDialog(null, "ada yg error" + e.getMessage());
       }
     }//GEN-LAST:event_signupMouseClicked
 

@@ -8,6 +8,8 @@ package View;
 import javax.swing.JOptionPane;
 
 import Controller.Koneksi;
+import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -3619,12 +3621,11 @@ public final class Dashboard extends javax.swing.JFrame {
                         String sql = "UPDATE tb_user set id=" + id + ", username= '" + txt_username.getText() + "', password='" + txt_password.getText() + "', nama='" + txt_nama.getText() + "', email='" + txt_email.getText() + "' WHERE id='"+id+"'";
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
-                        pst.execute();
 			System.out.println(sql);
 
 			loadAkun();
                         JOptionPane.showMessageDialog(null, "Data Berhasil Di Ubah");
-                } catch (Exception e){
+                } catch (HeadlessException | SQLException e){
                         JOptionPane.showMessageDialog(null, "Perubahan Data Gagal "+ e.getMessage());
                 }
         }//GEN-LAST:event_btn_perbaruiMouseClicked
@@ -3635,7 +3636,7 @@ public final class Dashboard extends javax.swing.JFrame {
                 jPanel6.repaint();
                 jPanel6.revalidate();
 
-                jPanel6.add(akun);
+		Component add = jPanel6.add(akun);
                 jPanel6.repaint();
                 jPanel6.revalidate();
         }//GEN-LAST:event_jLabel29MouseClicked
