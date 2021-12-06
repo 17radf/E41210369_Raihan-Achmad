@@ -8,6 +8,7 @@ package View;
 import javax.swing.JOptionPane;
 
 import Controller.Koneksi;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,6 +60,7 @@ public final class Dashboard extends javax.swing.JFrame {
 
     public void initThings(){
 	    try{
+		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width  - getSize().width) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 2);
 		tabelKaryawan();
 		tabelPelanggan();
 		tabelBuah();
@@ -276,7 +278,7 @@ public final class Dashboard extends javax.swing.JFrame {
     public void listPelanggan(){
 	jComboBox5.removeAllItems();
 	    try{
-		    String sql = "select nama from tb_pelanggan";
+		    String sql = "select nama from tb_pelanggan order by nama asc";
 		    pst=conn.prepareStatement(sql);
 		    rs=pst.executeQuery();
 		    while(rs.next()){
