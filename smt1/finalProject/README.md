@@ -1,9 +1,7 @@
 # <h3 align="center">Final Project: Semester 1</h3>
 
 <br>
-i legit hate this, not interested actually.
-but whatever.
-<br>
+> This is main (linux) version.<br>
 <br>
 
 ## Color Palette
