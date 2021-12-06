@@ -8,6 +8,7 @@ package View;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import Controller.Koneksi;
+import java.awt.HeadlessException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -308,7 +309,7 @@ public class Register_Form extends javax.swing.JFrame {
 	JOptionPane.showMessageDialog(null,"Penyimpanan Data Berhasil");
 	this.setVisible(false);
 	new Login_Form().setVisible(true);
-      }catch(Exception e){
+      }catch(HeadlessException | ClassNotFoundException | SQLException e){
           JOptionPane.showMessageDialog(null, "ada yg error");
       }
     }//GEN-LAST:event_signupMouseClicked
