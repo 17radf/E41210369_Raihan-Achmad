@@ -2995,10 +2995,10 @@ public final class Dashboard extends javax.swing.JFrame {
 					}
 					sql = "insert into tb_detail_transaksi values(null, '" + jComboBox3.getSelectedItem() + "','" + idBuah + "','" + jTextField2.getText() + "','" + id + "')";
 					pst = conn.prepareStatement(sql);
-					rs = pst.executeQuery();
+					pst.executeUpdate();
 					sql = "update tb_buah set stok = (stok - " + jTextField2.getText() + ") where id = " + idBuah;
 					pst = conn.prepareStatement(sql);
-					rs = pst.executeQuery();
+					pst.executeUpdate();
 					tabelDetailPenjualan((String) jComboBox3.getSelectedItem());
 				} else {
 				}
@@ -3034,7 +3034,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		while(rs.next()){
 			sql = "insert into tb_transaksi values(null, " + rs.getString(1) + ", CURDATE(), default)";
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			System.out.println(sql);
 			JOptionPane.showMessageDialog(null,"Pembayaran baru atas nama " + jComboBox5.getSelectedItem() + " telah dibuat");
 			initThings();
@@ -3091,7 +3091,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		System.out.println(sql);
 		try{
 		pst = conn.prepareStatement(sql);
-		rs = pst.executeQuery();
+		pst.executeUpdate();
            JOptionPane.showMessageDialog(null,"Data telah dimasukkan");
 		}catch(SQLException ex){
            JOptionPane.showMessageDialog(null,"sike!!! gabisa");
@@ -3111,7 +3111,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		System.out.println(sql);
 		try{
 		pst = conn.prepareStatement(sql);
-		rs = pst.executeQuery();
+		pst.executeUpdate();
            JOptionPane.showMessageDialog(null,"Data telah diupdate");
 		}catch(SQLException ex){
            JOptionPane.showMessageDialog(null,"Gagal atau Masih ada data yang terrelasi");
@@ -3125,7 +3125,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		System.out.println(sql);
 		try{
 		pst = conn.prepareStatement(sql);
-		rs = pst.executeQuery();
+		pst.executeUpdate();
            JOptionPane.showMessageDialog(null,"Data telah dihapus");
 		}catch(SQLException ex){
            JOptionPane.showMessageDialog(null,"Gagal atau Masih ada data yang terrelasi");
@@ -3155,10 +3155,10 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "delete from tb_detail_transaksi where id = '" + jTextField11.getText() + "'";
 		try{
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			sql = "update tb_buah set stok = (stok + " + jTextField8.getText() + ") where id = " + jLabel27.getText();
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			System.out.println(sql);
 			   JOptionPane.showMessageDialog(null,"Data telah dihapus");
 			   tabelPenjualan();
@@ -3254,7 +3254,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "update tb_pelanggan set nama = '" + nama + "', alamat = '" + alamat + "', no_hp = '"+ noHp + "' where id = " + id;
 		try{
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			JOptionPane.showMessageDialog(null,"Data berhasil diupdate");
 			tabelPelanggan();
 		}catch(SQLException ex){
@@ -3273,7 +3273,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "delete from tb_pelanggan where id = " + id;
 		try{
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			JOptionPane.showMessageDialog(null,"Data berhasil dihapus");
 			tabelPelanggan();
 		}catch(SQLException ex){
@@ -3295,7 +3295,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "update tb_karyawan set nama = '" + nama + "', id_bagian = '" + bagian + "' where id = " + id;
 		try{
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			JOptionPane.showMessageDialog(null,"Data berhasil diupdate");
 			tabelKaryawan();
 		}catch(SQLException ex){
@@ -3310,7 +3310,7 @@ public final class Dashboard extends javax.swing.JFrame {
 		String sql = "delete from tb_karyawan where id = " + id;
 		try{
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			JOptionPane.showMessageDialog(null,"Data berhasil dihapus");
 			tabelKaryawan();
 		}catch(SQLException ex){
@@ -3344,7 +3344,7 @@ public final class Dashboard extends javax.swing.JFrame {
 				System.out.println(sql);
 				try{
 				pst = conn.prepareStatement(sql);
-				rs = pst.executeQuery();
+				pst.executeUpdate();
 				tabelPelanggan();
 				JOptionPane.showMessageDialog(null,"Data berhasil dimasukkan");
 				}catch(SQLException ex){
@@ -3368,7 +3368,7 @@ public final class Dashboard extends javax.swing.JFrame {
 				System.out.println(sql);
 				try{
 				pst = conn.prepareStatement(sql);
-				rs = pst.executeQuery();
+				pst.executeUpdate();
 				tabelKaryawan();
 				}catch(SQLException ex){
 					JOptionPane.showMessageDialog(null,"Data gagal dimasukkan");
@@ -3539,13 +3539,13 @@ public final class Dashboard extends javax.swing.JFrame {
 
 					sql = "update tb_transaksi set bayar = 'sudah' where no_faktur = " + jComboBox3.getSelectedItem();
 					pst=conn.prepareStatement(sql);
-					rs=pst.executeQuery();
+					pst.executeUpdate();
 					String idTran = (String) jComboBox3.getSelectedItem();
 
 					// insert ke pembayaran
 					sql = "insert into tb_pembayaran values (null, " + idTran + ", " + hargaTot + ", CURDATE())";
 					pst=conn.prepareStatement(sql);
-					rs=pst.executeQuery();
+					pst.executeUpdate();
 
 					System.out.println("idtran = " +idTran+ " idkasir = " +id+ " bayar = " +bayar);
 					new Struk(idTran, id, bayar).setVisible(true);
@@ -3618,9 +3618,9 @@ public final class Dashboard extends javax.swing.JFrame {
 
         private void btn_perbaruiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_perbaruiMouseClicked
                 try {
-                        String sql = "UPDATE tb_user set id=" + id + ", username= '" + txt_username.getText() + "', password='" + txt_password.getText() + "', nama='" + txt_nama.getText() + "', email='" + txt_email.getText() + "' WHERE id='"+id+"'";
+                        String sql = "update tb_user set id=" + id + ", username= '" + txt_username.getText() + "', password='" + txt_password.getText() + "', nama='" + txt_nama.getText() + "', email='" + txt_email.getText() + "' WHERE id='"+id+"'";
 			pst = conn.prepareStatement(sql);
-			rs = pst.executeQuery();
+			pst.executeUpdate();
 			System.out.println(sql);
 
 			loadAkun();

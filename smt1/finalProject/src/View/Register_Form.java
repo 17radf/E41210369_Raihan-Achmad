@@ -292,9 +292,7 @@ public class Register_Form extends javax.swing.JFrame {
 		 this.setVisible(false);
 	    try {
 		    new Login_Form().setVisible(true);
-	    } catch (SQLException ex) {
-		    Logger.getLogger(Register_Form.class.getName()).log(Level.SEVERE, null, ex);
-	    } catch (ClassNotFoundException ex) {
+	    } catch (SQLException | ClassNotFoundException ex) {
 		    Logger.getLogger(Register_Form.class.getName()).log(Level.SEVERE, null, ex);
 	    }
     }//GEN-LAST:event_signinMouseClicked
