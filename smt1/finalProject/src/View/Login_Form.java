@@ -70,8 +70,6 @@ public class Login_Form extends javax.swing.JFrame {
                 jLabel9 = new javax.swing.JLabel();
                 jLabel3 = new javax.swing.JLabel();
                 jLabel4 = new javax.swing.JLabel();
-                jPanel3 = new javax.swing.JPanel();
-                btn_register = new javax.swing.JLabel();
                 txt_password = new javax.swing.JPasswordField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -190,37 +188,9 @@ public class Login_Form extends javax.swing.JFrame {
                 jLabel3.setForeground(new java.awt.Color(25, 26, 25));
                 jLabel3.setText("<html>Selamat Datang!</html>");
 
-                jLabel4.setFont(new java.awt.Font("Cascadia Mono", 0, 16)); // NOI18N
+                jLabel4.setFont(new java.awt.Font("Cascadia Mono", 0, 18)); // NOI18N
                 jLabel4.setForeground(new java.awt.Color(25, 26, 25));
-                jLabel4.setText("<html>Untuk melanjutkan, silahkan sign in ke aplikasi. Jika belum mempunyai akun silahkan sign up di bawah ini.</html>");
-
-                jPanel3.setBackground(new java.awt.Color(216, 233, 168));
-                jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-                jPanel3.setForeground(new java.awt.Color(25, 26, 25));
-
-                btn_register.setBackground(new java.awt.Color(25, 26, 25));
-                btn_register.setFont(new java.awt.Font("Cascadia Mono", 0, 18)); // NOI18N
-                btn_register.setForeground(new java.awt.Color(25, 26, 25));
-                btn_register.setText("Sign Up?");
-                btn_register.addMouseListener(new java.awt.event.MouseAdapter() {
-                        public void mouseClicked(java.awt.event.MouseEvent evt) {
-                                btn_registerMouseClicked(evt);
-                        }
-                });
-
-                javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-                jPanel3.setLayout(jPanel3Layout);
-                jPanel3Layout.setHorizontalGroup(
-                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap(33, Short.MAX_VALUE)
-                                .addComponent(btn_register)
-                                .addGap(28, 28, 28))
-                );
-                jPanel3Layout.setVerticalGroup(
-                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btn_register, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                );
+                jLabel4.setText("<html>Untuk melanjutkan, silahkan sign in untuk menggunakan aplikasi toko buah.</html>");
 
                 javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
                 jPanel4.setLayout(jPanel4Layout);
@@ -234,21 +204,18 @@ public class Login_Form extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(24, Short.MAX_VALUE))
                 );
                 jPanel4Layout.setVerticalGroup(
                         jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addGap(70, 70, 70)
+                                .addGap(94, 94, 94)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 148, Short.MAX_VALUE))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 176, Short.MAX_VALUE))
                 );
 
                 jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 460, 420));
@@ -351,15 +318,6 @@ public class Login_Form extends javax.swing.JFrame {
 		}
         }//GEN-LAST:event_txt_usernameKeyPressed
 
-        private void btn_registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registerMouseClicked
-                try {
-                        this.setVisible(false);
-                        new Register_Form().setVisible(true);
-                } catch (SQLException | ClassNotFoundException ex) {
-                        Logger.getLogger(Login_Form.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }//GEN-LAST:event_btn_registerMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -397,7 +355,6 @@ public class Login_Form extends javax.swing.JFrame {
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JLabel btn_login;
-        private javax.swing.JLabel btn_register;
         private javax.swing.JLabel hide_pass;
         private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;
@@ -407,7 +364,6 @@ public class Login_Form extends javax.swing.JFrame {
         private javax.swing.JLabel jLabel9;
         private javax.swing.JPanel jPanel1;
         private javax.swing.JPanel jPanel2;
-        private javax.swing.JPanel jPanel3;
         private javax.swing.JPanel jPanel4;
         private javax.swing.JSeparator jSeparator1;
         private javax.swing.JSeparator jSeparator2;
