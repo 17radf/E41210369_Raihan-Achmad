@@ -5,27 +5,21 @@
  */
 package Controller;
 import java.sql.*;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Raihan
  */
 public class Koneksi {
-     private static Connection koneksi;
-public static Connection getKoneksi(){
-    if(koneksi==null){
+	private static Connection config;
+	public static Connection getKoneksi() throws SQLException, ClassNotFoundException {
         try{
-            String url;
-            url="jdbc:mysql://localhost:3306/db_tokobuah";
-            String username ="root";
-            String password = "";
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            koneksi = DriverManager.getConnection(url, username, password);   
-        } catch(SQLException t) {
-            JOptionPane.showMessageDialog(null, "error koneksi");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            config = DriverManager.getConnection("jdbc:mysql://localhost/db_tokobuah", "root", "");
+            System.out.println("sukses gan");  
+        } catch(SQLException ex) {
+		System.out.println("gagal konek");
         }
-    }return koneksi;
-}static Object getConnection(){
-        throw new UnsupportedOperationException("not yet implemented");
-                }
+		return config;
+  }
+
 }

@@ -1,9 +1,11 @@
 # <h3 align="center">Final Project: Semester 1</h3>
 
 <br>
-> This is windows version <br>
-> The only difference is there is a windows title/decoration and the receipt can be printed w/ jasper<br>
+i legit hate this, not interested actually.
+but whatever.
 <br>
+<br>
+
 ## Color Palette
 
 1. Black = #191A19 // rgb(25, 26, 25)
@@ -13,4 +15,4 @@
 
 ## Poster
 
-![arghhh](posterWin.png)
+![arghhh](poster.png)
