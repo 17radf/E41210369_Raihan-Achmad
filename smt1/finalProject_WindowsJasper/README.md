@@ -1,9 +1,9 @@
 # <h3 align="center">Final Project: Semester 1</h3>
 
 <br>
-> This is the windows version <br>
-> The only difference is there is a windows title/decoration and the receipt can be printed w/ jasper<br>
-> And this one is going to be uploaded to final assignment repo<br>
+i legit hate this, not interested actually.
+but whatever.
+<br>
 <br>
 
 ## Color Palette

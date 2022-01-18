@@ -2,17 +2,20 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="297" pageHeight="432" columnWidth="257" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0900ffc-f7cc-409a-a7ef-e1c15ce7c0c1">
 	<property name="ireport.zoom" value="2.5937424601000023"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="20"/>
 	<parameter name="no_faktur" class="java.lang.String"/>
 	<parameter name="bayar" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select b.id, substring(b.nama,1,7), dt.qty, sum(dt.qty * b.harga), u.nama, t.tanggal, (select sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} ) as totalH, (select $P{bayar} - sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} ) as kembalian from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} group by dt.id order by t.tanggal desc;]]>
+		<![CDATA[select b.id, substring(b.nama,1,7), dt.qty, b.harga, sum(dt.qty * b.harga), u.nama, t.tanggal, (select sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} ) as totalH, (select $P{bayar} - sum(dt.qty * b.harga) from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} ) as kembalian from tb_detail_transaksi as dt join tb_transaksi as t on dt.id_transaksi = t.no_faktur join tb_buah as b on dt.id_buah = b.id join tb_pelanggan as p on t.id_pelanggan = p.id join tb_user as u on dt.id_user = u.id where t.no_faktur = $P{no_faktur} group by dt.id order by t.tanggal desc;]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="substring(b.nama,1,7)" class="java.lang.String"/>
 	<field name="qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="sum(dt.qty * b.harga)" class="java.math.BigDecimal"/>
@@ -30,11 +33,18 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="72" y="21" width="136" height="41" uuid="d7ab6c1a-0f04-48f0-8160-92be0ad83d21"/>
+				<reportElement x="71" y="12" width="136" height="28" uuid="d7ab6c1a-0f04-48f0-8160-92be0ad83d21"/>
 				<textElement>
 					<font fontName="Cascadia Mono" size="24"/>
 				</textElement>
 				<text><![CDATA[Toko Buah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="39" width="191" height="24" uuid="efe7c416-ffc4-4b3f-b090-fec2b65c9d40"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Cascadia Mono"/>
+				</textElement>
+				<text><![CDATA[ Jl. Mastrip, Krajan Timur, Sumbersari 68121]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -80,21 +90,21 @@
 				<text><![CDATA[Sub Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="11" width="30" height="20" uuid="86a81e5c-18de-489c-9d64-6ac750fa3000"/>
+				<reportElement x="22" y="11" width="30" height="20" uuid="86a81e5c-18de-489c-9d64-6ac750fa3000"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="140" y="11" width="55" height="20" uuid="b807e9c4-1f89-44b8-b296-223994fd797b"/>
+				<reportElement x="152" y="11" width="43" height="20" uuid="b807e9c4-1f89-44b8-b296-223994fd797b"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
 				<text><![CDATA[Jumlah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="11" width="35" height="20" uuid="9440a0e7-48c3-424c-b46c-59645bd58add"/>
+				<reportElement x="0" y="11" width="16" height="20" uuid="9440a0e7-48c3-424c-b46c-59645bd58add"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
@@ -106,12 +116,19 @@
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="101" y="11" width="47" height="20" uuid="8bc6832c-9422-4edf-92e1-696a90f36825"/>
+				<textElement>
+					<font fontName="Cascadia Mono"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField>
-				<reportElement x="56" y="0" width="72" height="20" uuid="bbcb1ed7-afad-4ccc-a26b-f137679013df"/>
+				<reportElement x="21" y="0" width="75" height="20" uuid="bbcb1ed7-afad-4ccc-a26b-f137679013df"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
@@ -125,18 +142,25 @@
 				<textFieldExpression><![CDATA[$F{sum(dt.qty * b.harga)}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="140" y="0" width="55" height="20" uuid="02c8dc6c-abf9-491c-9c30-a9afe3dab2ef"/>
+				<reportElement x="152" y="0" width="43" height="20" uuid="02c8dc6c-abf9-491c-9c30-a9afe3dab2ef"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="35" height="20" uuid="3a3ee56c-a06f-46d8-9c18-611bb42259a9"/>
+				<reportElement x="0" y="0" width="16" height="20" uuid="3a3ee56c-a06f-46d8-9c18-611bb42259a9"/>
 				<textElement>
 					<font fontName="Cascadia Mono"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="0" width="47" height="20" uuid="5669d23c-19ea-4bf1-95a8-e2bf00be7561"/>
+				<textElement>
+					<font fontName="Cascadia Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
